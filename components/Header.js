@@ -16,8 +16,8 @@ const StyledHeader = styled.header``;
 const Navbar = styled.div`
   background-color: ${({ theme }) => theme.colors.semiDarkBlue};
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0.5rem 1.2rem;
 
   @media (min-width: 600px) {
@@ -33,35 +33,26 @@ const Navbar = styled.div`
     padding: 1.8rem 0.9rem;
     margin: 0;
     border-radius: 12px;
-
-    & > a > svg {
-      width: 32px;
-    }
-
-    & > button {
-      margin-top: auto;
-
-      img {
-        height: 2rem;
-        width: 2rem;
-      }
-    }
   }
 `;
 
 const Logo = styled.a`
+  display: flex;
   svg {
     width: 28px;
   }
 
-  display: flex;
+  @media (min-width: 768px) {
+    svg {
+      width: 32px;
+    }
+  }
 `;
 
 const Nav = styled.nav`
   svg {
     width: 16px;
   }
-
   ul {
     display: flex;
     gap: 0.6rem;
@@ -71,12 +62,9 @@ const Nav = styled.nav`
       padding: 0.8rem;
       border-radius: 5px;
       color: #5a698f;
-      /* transition: background-color 250ms; */
-
       &:hover {
         background-color: #202a44;
       }
-
       &.active {
         color: white;
       }
@@ -87,7 +75,6 @@ const Nav = styled.nav`
     svg {
       width: 18px;
     }
-
     ul {
       gap: 1rem;
     }
@@ -95,11 +82,9 @@ const Nav = styled.nav`
 
   @media (min-width: 768px) {
     margin-top: 4rem;
-
     svg {
       width: 20px;
     }
-
     ul {
       flex-direction: column;
       gap: 1rem;
@@ -109,11 +94,18 @@ const Nav = styled.nav`
 
 const User = styled.button`
   flex-shrink: 0;
-
   height: 1.8rem;
   width: 1.8rem;
   border: 1.5px solid white;
   border-radius: 50%;
+
+  @media (min-width: 768px) {
+    margin-top: auto;
+    img {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
 `;
 
 const navLinks = [
@@ -145,6 +137,7 @@ const navLinks = [
 
 const Header = () => {
   const router = useRouter();
+
   return (
     <StyledHeader>
       <Navbar>
@@ -158,8 +151,12 @@ const Header = () => {
               const { id, url, text, icon } = link;
               return (
                 <li key={id}>
-                  <Link href={url} title={text}>
-                    <a className={router.pathname === `${url}` ? 'active' : ''}>
+                  <Link href={url}>
+                    <a
+                      className={router.pathname === `${url}` ? 'active' : ''}
+                      title={text}
+                      aria-label={text}
+                    >
                       {icon}
                     </a>
                   </Link>

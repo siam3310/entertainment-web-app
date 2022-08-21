@@ -3,12 +3,20 @@ import { SearchIcon } from '../icons';
 import { Container } from '../styles/SharedStyles';
 
 const StyledSearchBar = styled.div`
-  margin: 1rem 0;
+  margin: 1rem 0 1.5rem;
+
+  @media (min-width: 768px) {
+    margin: 1rem 0 1.8rem;
+  }
+
+  @media (min-width: 1024px) {
+    margin: 1.25rem 0 2.3rem;
+  }
 
   & > div {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
   }
 
   button {
@@ -36,11 +44,10 @@ const StyledSearchBar = styled.div`
     border: none;
     background-color: transparent;
     color: white;
-    font-size: 0.95rem;
-    font-size: clamp(0.95rem, 2.8vw, 1.3rem);
-    font-weight: 300;
+    font-size: clamp(0.95rem, 2vw, 1.25rem);
     width: 100%;
-    padding: 0.6rem 0;
+    padding: 0.5em 0;
+    font-weight: 300;
     caret-color: ${({ theme }) => theme.colors.red};
 
     &:focus {
@@ -48,14 +55,6 @@ const StyledSearchBar = styled.div`
       border-bottom: 1px solid ${({ theme }) => theme.colors.greyishBlue};
       margin-bottom: -1px;
     }
-  }
-
-  @media (min-width: 768px) {
-    margin: 1.5rem 0;
-  }
-
-  @media (min-width: 1024px) {
-    margin: 1.8rem 0 2.3rem;
   }
 `;
 

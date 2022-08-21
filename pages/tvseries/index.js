@@ -2,18 +2,13 @@ import Head from 'next/head';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
-import MovieCard from '../../components/MovieCard';
+import MovieList from '../../components/MovieList';
 
-import {
-  AppWrapper,
-  Container,
-  Grid,
-  GridWrapper,
-} from '../../styles/SharedStyles';
+import { AppWrapper, Container, Heading } from '../../styles/SharedStyles';
 
-import movieData from '../../data.json';
+import movies from '../../data.json';
 
-const TvSeries = () => {
+export default function TvSeries() {
   return (
     <>
       <Head>
@@ -25,22 +20,12 @@ const TvSeries = () => {
         <Header />
         <main>
           <SearchBar />
-          <GridWrapper>
-            <Container>
-              <h1>Tv Series</h1>
-              <Grid>
-                {movieData
-                  .filter((movie) => movie.category === 'TV Series')
-                  .map((movie, i) => {
-                    return <MovieCard key={i} movie={movie} />;
-                  })}
-              </Grid>
-            </Container>
-          </GridWrapper>
+          <Container>
+            <Heading>Tv Series</Heading>
+            <MovieList movies={movies} />
+          </Container>
         </main>
       </AppWrapper>
     </>
   );
-};
-
-export default TvSeries;
+}

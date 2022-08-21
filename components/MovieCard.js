@@ -55,34 +55,22 @@ const MovieCardDetails = styled.header`
 `;
 
 const MovieCard = ({ movie }) => {
-  console.log(movie);
-  const {
-    title,
-    thumbnail: {
-      regular: { medium },
-    },
-    year,
-    category,
-    rating,
-    isBookmarked,
-  } = movie;
-
   return (
     <StyledMovieCard>
       <Thumbnail>
-        <img src={medium} alt={title} />
+        <img src={movie.thumbnail.regular.large} alt={movie.title} />
       </Thumbnail>
 
       <MovieCardDetails>
         <div>
-          <span>{year}</span>
+          <span>{movie.year}</span>
           <Flex>
-            {category === 'Movie' ? <MoviesIcon /> : <SeriesIcon />}
-            {category}
+            {movie.category === 'Movie' ? <MoviesIcon /> : <SeriesIcon />}
+            {movie.category}
           </Flex>
-          <span> {rating}</span>
+          <span> {movie.rating}</span>
         </div>
-        <h3>{title}</h3>
+        <h3>{movie.title}</h3>
       </MovieCardDetails>
     </StyledMovieCard>
   );

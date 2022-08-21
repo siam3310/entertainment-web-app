@@ -3,7 +3,7 @@ import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
 import { AppWrapper } from '../../styles/AppWrapper.styled';
 
-const Bookmarks = () => {
+export default function Bookmarks() {
   return (
     <AppWrapper>
       <Header />
@@ -13,6 +13,4 @@ const Bookmarks = () => {
       </main>
     </AppWrapper>
   );
-};
-
-export default Bookmarks;
+}

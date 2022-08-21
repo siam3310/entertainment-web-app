@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-// import { ReactComponent as SearchIcon } from '../assets/icon-search.svg';
 import { SearchIcon } from '../icons';
-import { Container } from '../styles/Container.styled';
+import { Container } from '../styles/SharedStyles';
 
 const StyledSearchBar = styled.div`
   margin: 1rem 0;

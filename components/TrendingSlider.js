@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '../styles/Container.styled';
+import { Container } from '../styles/SharedStyles';
 
 const TrendingSlider = () => {
   return (

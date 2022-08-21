@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import { base, main } from '../styles/Theme';
-import GlobalStyles from '../styles/Global';
+import GlobalStyles from '../styles/GlobalStyles';
 
 const theme = { ...base, colors: main };
 

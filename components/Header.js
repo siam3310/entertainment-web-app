@@ -1,8 +1,7 @@
-// import { NavLink } from 'react-router-dom';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
-// import avatar from '/assets/image-avatar.png';
 
 import {
   HomeIcon,
@@ -145,6 +144,7 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const router = useRouter();
   return (
     <StyledHeader>
       <Navbar>
@@ -159,7 +159,9 @@ const Header = () => {
               return (
                 <li key={id}>
                   <Link href={url} title={text}>
-                    <a>{icon}</a>
+                    <a className={router.pathname === `${url}` ? 'active' : ''}>
+                      {icon}
+                    </a>
                   </Link>
                 </li>
               );

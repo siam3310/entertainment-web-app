@@ -4,12 +4,14 @@ import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import MovieCard from '../components/MovieCard';
 
-import { AppWrapper } from '../styles/AppWrapper.styled';
-import { Container } from '../styles/Container.styled';
-import { Grid, GridWrapper } from '../styles/GridWrapper.styled';
+import {
+  AppWrapper,
+  Container,
+  Grid,
+  GridWrapper,
+} from '../styles/SharedStyles';
+
 import movieData from '../data.json';
-// const jsonData = require('./students.json');
-// console.log(jsonData);
 
 export default function Home() {
   return (
@@ -23,7 +25,6 @@ export default function Home() {
         <Header />
         <main>
           <SearchBar />
-
           <GridWrapper>
             <Container>
               <h1>Recommended for you</h1>

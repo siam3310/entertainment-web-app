@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { SearchIcon } from '../icons';
 import { Container } from '../styles/SharedStyles';
@@ -59,13 +60,26 @@ const StyledSearchBar = styled.div`
 `;
 
 const SearchBar = () => {
+  const router = useRouter();
+
   return (
     <StyledSearchBar>
       <Container>
         <button>
           <SearchIcon />
         </button>
-        <input type="text" placeholder="Search for movies or TV series" />
+        <input
+          type="text"
+          placeholder={`Search for ${
+            router.pathname === '/movies'
+              ? 'Movies'
+              : router.pathname === '/tvseries'
+              ? 'TV Series'
+              : router.pathname === '/bookmarks'
+              ? 'Bookmarks'
+              : 'Movies or TV series'
+          }`}
+        />
       </Container>
     </StyledSearchBar>
   );

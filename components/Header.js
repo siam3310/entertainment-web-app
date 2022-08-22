@@ -26,13 +26,24 @@ const Navbar = styled.div`
   }
 
   @media (min-width: 768px) {
+    flex-direction: column;
     position: sticky;
     top: 1.5rem;
-    flex-direction: column;
     height: calc(100vh - 3rem);
-    padding: 1.8rem 0.9rem;
+    max-height: 41rem;
+    padding: 1.8rem 0.8rem;
     margin: 0;
+  }
+
+  @media (min-width: 1024px) {
+    top: 2rem;
+    height: calc(100vh - 4rem);
     border-radius: 12px;
+  }
+
+  @media (max-height: 480px) {
+    height: 100%;
+    position: unset;
   }
 `;
 
@@ -56,18 +67,18 @@ const Nav = styled.nav`
   ul {
     display: flex;
     gap: 0.6rem;
-
-    a {
-      display: flex;
-      padding: 0.8rem;
-      border-radius: 5px;
-      color: #5a698f;
-      &:hover {
-        background-color: #202a44;
-      }
-      &.active {
-        color: white;
-      }
+  }
+  a {
+    display: flex;
+    padding: 0.8rem;
+    border-radius: 5px;
+    color: #5a698f;
+    &:hover,
+    &:focus {
+      background-color: #202a44;
+    }
+    &.active {
+      color: white;
     }
   }
 
@@ -82,12 +93,18 @@ const Nav = styled.nav`
 
   @media (min-width: 768px) {
     margin-top: 4rem;
+    ul {
+      flex-direction: column;
+    }
+  }
+
+  @media (min-width: 1024px) {
     svg {
       width: 20px;
     }
-    ul {
-      flex-direction: column;
-      gap: 1rem;
+    a {
+      padding: 1rem;
+      border-radius: 8px;
     }
   }
 `;
@@ -148,16 +165,17 @@ const Header = () => {
         <Nav>
           <ul>
             {navLinks.map((link) => {
-              const { id, url, text, icon } = link;
               return (
-                <li key={id}>
-                  <Link href={url}>
+                <li key={link.id}>
+                  <Link href={link.url}>
                     <a
-                      className={router.pathname === `${url}` ? 'active' : ''}
-                      title={text}
-                      aria-label={text}
+                      className={
+                        router.pathname === `${link.url}` ? 'active' : ''
+                      }
+                      title={link.text}
+                      aria-label={link.text}
                     >
-                      {icon}
+                      {link.icon}
                     </a>
                   </Link>
                 </li>

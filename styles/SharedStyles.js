@@ -13,8 +13,9 @@ export const Container = styled.div`
 `;
 
 export const AppWrapper = styled.div`
-  max-width: 1366px;
+  max-width: ${({ theme }) => theme.maxWidth};
   margin: 0 auto;
+  padding-bottom: 1.5rem;
 
   @media (min-width: 768px) {
     display: grid;
@@ -25,6 +26,7 @@ export const AppWrapper = styled.div`
 
   @media (min-width: 1024px) {
     gap: 2rem;
+    padding: 2rem;
   }
 `;
 

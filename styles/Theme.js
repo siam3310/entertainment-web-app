@@ -1,11 +1,8 @@
 export const base = {
-  fonts: {
-    heading: "'Outfit', sans-serif",
-    body: "'Outfit', sans-serif",
-  },
+  fontFamily: "'Outfit', sans-serif",
   transition: '250ms',
   shadow: ['-10px 0px 30px -15px #333'],
-  maxWidth: '1240px',
+  maxWidth: '1480px',
 };
 
 export const main = {

@@ -21,7 +21,7 @@ export default function TvSeries() {
         <main>
           <SearchBar />
           <Container>
-            <Heading>Tv Series</Heading>
+            <Heading>TV Series</Heading>
             <MovieList movies={movies} />
           </Container>
         </main>

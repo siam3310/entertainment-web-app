@@ -26,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
 }
 
 body {
-  font-family: ${({ theme }) => theme.fonts.body};
+  font-family: ${({ theme }) => theme.fontFamily};
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.darkBlue};
   line-height: 1.5;
@@ -43,7 +43,6 @@ a {
 }
 
 button {
-  font-family: ${({ theme }) => theme.fonts.body};
   cursor: pointer;
   display: inline-block;
   background: none;
@@ -51,15 +50,14 @@ button {
   line-height: 1;
 }
 
-input,textarea {
-  font-family: ${({ theme }) => theme.fonts.body};
+button,input,textarea {
+  font-family: ${({ theme }) => theme.fontFamily};
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: ${({ theme }) => theme.fonts.heading};
   line-height: 1.25;
 }
 

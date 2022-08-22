@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
-import { AppWrapper } from '../../styles/AppWrapper.styled';
+import { AppWrapper } from '../../styles/SharedStyles';
 
 export default function Bookmarks() {
   return (

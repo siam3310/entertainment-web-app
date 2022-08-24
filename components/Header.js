@@ -31,17 +31,18 @@ const Navbar = styled.div`
     top: 1.5rem;
     height: calc(100vh - 3rem);
     max-height: 41rem;
-    padding: 1.8rem 0.8rem;
+    padding: 1.8rem 0;
     margin: 0;
   }
 
   @media (min-width: 1024px) {
+    padding: 2rem 0;
     top: 2rem;
     height: calc(100vh - 4rem);
     border-radius: 12px;
   }
 
-  @media (max-height: 480px) {
+  @media (max-height: 500px) {
     height: 100%;
     position: unset;
   }

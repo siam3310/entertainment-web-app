@@ -16,15 +16,17 @@ export const AppWrapper = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
   margin: 0 auto;
   padding-bottom: 1.5rem;
+  overflow-x: clip;
 
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 4.375rem calc(100% - (4.375rem + 1.5rem));
     gap: 1.5rem;
     padding: 1.5rem;
   }
 
   @media (min-width: 1024px) {
+    grid-template-columns: 5.375rem calc(100% - (5.375rem + 2rem));
     gap: 2rem;
     padding: 2rem;
   }
@@ -33,5 +35,13 @@ export const AppWrapper = styled.div`
 export const Heading = styled.h1`
   font-size: clamp(1.1rem, 2.5vw, 1.85rem);
   font-weight: 300;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 1.2rem;
+  }
+
+  @media (min-width: 1024px) {
+    margin-bottom: 1.5rem;
+  }
 `;

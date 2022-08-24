@@ -2,7 +2,7 @@ export const base = {
   fontFamily: "'Outfit', sans-serif",
   transition: '250ms',
   shadow: ['-10px 0px 30px -15px #333'],
-  maxWidth: '1480px',
+  maxWidth: '1440px',
 };
 
 export const main = {

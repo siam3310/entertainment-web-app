@@ -45,9 +45,9 @@ const StyledSearchBar = styled.div`
     border: none;
     background-color: transparent;
     color: white;
-    font-size: clamp(0.95rem, 2vw, 1.25rem);
+    font-size: clamp(0.95rem, 2.8vw, 1.4rem);
     width: 100%;
-    padding: 0.5em 0;
+    padding: 0.4em 0;
     font-weight: 300;
     caret-color: ${({ theme }) => theme.colors.red};
 

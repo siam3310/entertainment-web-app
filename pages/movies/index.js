@@ -1,19 +1,18 @@
 import Head from 'next/head';
+import axios from 'axios';
+import { server } from '../../config';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
-import MovieList from '../../components/MovieList';
+import Collection from '../../components/Collection';
 
-import { AppWrapper, Container, Heading } from '../../styles/SharedStyles';
+import { AppWrapper, Container } from '../../styles/SharedStyles';
 
-import movies from '../../data.json';
-
-export default function Movies() {
+export default function Movies({ nowPlaying }) {
   return (
     <>
       <Head>
         <title>Entertainment | Movies</title>
-        <meta name="description" content="Entertainment web app" />
       </Head>
 
       <AppWrapper>
@@ -21,11 +20,28 @@ export default function Movies() {
         <main>
           <SearchBar />
           <Container>
-            <Heading>Movies</Heading>
-            <MovieList movies={movies} />
+            <Collection
+              list={nowPlaying}
+              title="Now Playing"
+              mediaType="movie"
+            />
           </Container>
         </main>
       </AppWrapper>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const {
+    data: { results: nowPlaying },
+  } = await axios.get(
+    `${server}movie/now_playing?api_key=${process.env.API_KEY}&language=en-US&page=1`
+  );
+
+  return {
+    props: {
+      nowPlaying,
+    },
+  };
 }

@@ -1,19 +1,18 @@
 import Head from 'next/head';
+import axios from 'axios';
+import { server } from '../../config';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
-import MovieList from '../../components/MovieList';
+import Collection from '../../components/Collection';
 
-import { AppWrapper, Container, Heading } from '../../styles/SharedStyles';
+import { AppWrapper, Container } from '../../styles/SharedStyles';
 
-import movies from '../../data.json';
-
-export default function TvSeries() {
+export default function TvSeries({ popular }) {
   return (
     <>
       <Head>
         <title>Entertainment | TV Series</title>
-        <meta name="description" content="Entertainment web app" />
       </Head>
 
       <AppWrapper>
@@ -21,11 +20,28 @@ export default function TvSeries() {
         <main>
           <SearchBar />
           <Container>
-            <Heading>TV Series</Heading>
-            <MovieList movies={movies} />
+            <Collection
+              list={popular}
+              title="Popular TV Series"
+              mediaType="tv"
+            />
           </Container>
         </main>
       </AppWrapper>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const {
+    data: { results: popular },
+  } = await axios.get(
+    `${server}tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
+  );
+
+  return {
+    props: {
+      popular,
+    },
+  };
 }

@@ -76,36 +76,35 @@ const Gradient = styled.div`
   width: 100%;
   height: 100%;
   z-index: 3;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.75)
-  );
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
 `;
 
-const SliderCard = ({ movie }) => {
+const SliderCard = (props) => {
   return (
     <StyledSliderCard>
       <Thumbnail>
         <Image
-          src={movie.thumbnail.regular.large}
-          alt={movie.title}
+          src={`https://image.tmdb.org/t/p/original${props.image}`}
+          alt={props.media_type == 'movie' ? props.title : props.name}
           layout="responsive"
           width={470}
           height={258}
         />
       </Thumbnail>
-
       <MovieCardDetails>
         <div>
-          <p>{movie.year}</p>
           <p>
-            {movie.category === 'Movie' ? <MoviesIcon /> : <SeriesIcon />}
-            {movie.category}
+            {props.media_type == 'movie'
+              ? props.release_date.slice(0, 4)
+              : props.first_air_date.slice(0, 4)}
           </p>
-          <p> {movie.rating}</p>
+          <p>
+            {props.media_type == 'movie' ? <MoviesIcon /> : <SeriesIcon />}
+            {props.media_type == 'movie' ? 'Movie' : 'TV Series'}
+          </p>
+          <p> {props.vote_average.toFixed(1)}</p>
         </div>
-        <h3>{movie.title}</h3>
+        <h3>{props.media_type == 'movie' ? props.title : props.name}</h3>
       </MovieCardDetails>
       <Gradient />
     </StyledSliderCard>

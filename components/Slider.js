@@ -5,8 +5,6 @@ import 'swiper/css';
 import { Heading } from '../styles/SharedStyles';
 import SliderCard from './SliderCard';
 
-import trendingMovies from '../data.json';
-
 const SwiperWrapper = styled.div`
   margin-bottom: 1.6rem;
   margin-right: -4rem;
@@ -21,7 +19,7 @@ const SwiperWrapper = styled.div`
   }
 `;
 
-const Slider = () => {
+const Slider = ({ trending }) => {
   return (
     <SwiperWrapper>
       <Heading>Trending</Heading>
@@ -43,16 +41,21 @@ const Slider = () => {
           },
         }}
       >
-        {trendingMovies
-          .filter((movie) => movie.isTrending)
-          .map((movie, i) => {
-            console.log(movie);
-            return (
-              <SwiperSlide key={i}>
-                <SliderCard movie={movie} />
-              </SwiperSlide>
-            );
-          })}
+        {trending.map((movie) => {
+          return (
+            <SwiperSlide key={movie.id}>
+              <SliderCard
+                image={movie.backdrop_path || movie.posterPath}
+                media_type={movie.media_type}
+                title={movie.title}
+                name={movie.name}
+                release_date={movie.release_date}
+                first_air_date={movie.first_air_date}
+                vote_average={movie.vote_average}
+              />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </SwiperWrapper>
   );

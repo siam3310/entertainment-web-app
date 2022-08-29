@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { MoviesIcon, SeriesIcon } from '../icons';
 
-const StyledMovieCard = styled.article`
+const StyledCard = styled.article`
   cursor: pointer;
 `;
 
@@ -12,7 +12,7 @@ const Thumbnail = styled.div`
   margin-bottom: 0.6rem;
 `;
 
-const MovieCardDetails = styled.header`
+const CardDetails = styled.header`
   div {
     display: flex;
     gap: 1.2rem;
@@ -54,36 +54,39 @@ const MovieCardDetails = styled.header`
 
   h3 {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
-    font-weight: 500;
+    white-space: wrap;
   }
 `;
 
-const MovieCard = ({ movie }) => {
+const Card = ({ item, mediaType }) => {
   return (
-    <StyledMovieCard>
+    <StyledCard>
       <Thumbnail>
         <Image
-          src={movie.thumbnail.regular.large}
-          alt={movie.title}
+          src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+          alt={mediaType == 'movie' ? item.title : item.name}
           layout="responsive"
           height={62}
           width={100}
         />
       </Thumbnail>
-
-      <MovieCardDetails>
+      <CardDetails>
         <div>
-          <p>{movie.year}</p>
           <p>
-            {movie.category === 'Movie' ? <MoviesIcon /> : <SeriesIcon />}
-            {movie.category}
+            {mediaType == 'movie'
+              ? item.release_date.slice(0, 4)
+              : item.first_air_date.slice(0, 4)}
           </p>
-          <p> {movie.rating}</p>
+          <p>
+            {mediaType == 'movie' ? <MoviesIcon /> : <SeriesIcon />}
+            {mediaType == 'movie' ? 'Movie' : 'TV Series'}
+          </p>
+          <p> {item.vote_average.toFixed(1)}</p>
         </div>
-        <h3>{movie.title}</h3>
-      </MovieCardDetails>
-    </StyledMovieCard>
+        <h3>{mediaType == 'movie' ? item.title : item.name}</h3>
+      </CardDetails>
+    </StyledCard>
   );
 };
 
-export default MovieCard;
+export default Card;

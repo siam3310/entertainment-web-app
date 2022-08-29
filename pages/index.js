@@ -1,19 +1,19 @@
 import Head from 'next/head';
+import axios from 'axios';
+import { server } from '../config';
 
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import Slider from '../components/Slider';
-import MovieList from '../components/MovieList';
+import Collection from '../components/Collection';
 
-import { AppWrapper, Container, Heading } from '../styles/SharedStyles';
+import { AppWrapper, Container } from '../styles/SharedStyles';
 
-import movies from '../data.json';
-
-export default function Home() {
+export default function Home({ trending, popularMovies }) {
   return (
     <>
       <Head>
-        <title>Entertainment</title>
+        <title>Entertainment | Home</title>
         <meta name="description" content="Entertainment web app" />
       </Head>
 
@@ -22,12 +22,36 @@ export default function Home() {
         <main>
           <SearchBar />
           <Container>
-            <Slider />
-            <Heading>Recommended for you</Heading>
-            <MovieList movies={movies} />
+            <Slider trending={trending} />
+            <Collection
+              list={popularMovies}
+              title="Popular Movies"
+              mediaType="movie"
+            />
           </Container>
         </main>
       </AppWrapper>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const {
+    data: { results: trending },
+  } = await axios.get(
+    `${server}trending/all/day?api_key=${process.env.API_KEY}&language=en-US&page=1`
+  );
+
+  const {
+    data: { results: popularMovies },
+  } = await axios.get(
+    `${server}movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
+  );
+
+  return {
+    props: {
+      trending,
+      popularMovies,
+    },
+  };
 }

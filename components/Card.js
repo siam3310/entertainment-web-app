@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { MoviesIcon, SeriesIcon } from '../icons';
 
@@ -59,8 +60,18 @@ const CardDetails = styled.header`
 `;
 
 const Card = ({ item, mediaType }) => {
+  const router = useRouter();
+
+  const showDetailsHandler = () => {
+    if (mediaType === 'movie') {
+      router.push(`/movies/${item.id}`);
+    } else if (mediaType === 'tvseries') {
+      router.push(`/tvseries/${item.id}`);
+    }
+  };
+
   return (
-    <StyledCard>
+    <StyledCard onClick={showDetailsHandler}>
       <Thumbnail>
         <Image
           src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}

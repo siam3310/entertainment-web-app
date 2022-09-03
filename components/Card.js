@@ -69,7 +69,8 @@ const Card = ({ item, mediaType }) => {
       router.push(`/tvseries/${item.id}`);
     }
   };
-
+  const releaseDate = item.release_date || [];
+  const firstAirDate = item.first_air_date || [];
   return (
     <StyledCard onClick={showDetailsHandler}>
       <Thumbnail>
@@ -85,8 +86,8 @@ const Card = ({ item, mediaType }) => {
         <div>
           <p>
             {mediaType == 'movie'
-              ? item.release_date.slice(0, 4)
-              : item.first_air_date.slice(0, 4)}
+              ? releaseDate.slice(0, 4)
+              : firstAirDate.slice(0, 4)}
           </p>
           <p>
             {mediaType == 'movie' ? <MoviesIcon /> : <SeriesIcon />}

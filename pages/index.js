@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { server } from '../config';
+import { pathToSearchAll, server } from '../config';
 
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
@@ -20,7 +20,8 @@ export default function Home({ trending, popularMovies }) {
       <AppWrapper>
         <Header />
         <main>
-          <SearchBar />
+          <SearchBar searchPath={pathToSearchAll} />
+
           <Container>
             <Slider trending={trending} />
             <Collection

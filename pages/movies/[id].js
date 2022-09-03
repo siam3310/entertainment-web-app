@@ -3,7 +3,7 @@ import axios from 'axios';
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
 import MovieDetails from '../../components/MovieDetails';
-import { server } from '../../config';
+import { pathToSearchMovie, server } from '../../config';
 import { AppWrapper, Container } from '../../styles/SharedStyles';
 
 const movieDetails = ({ details, credits }) => {
@@ -16,7 +16,8 @@ const movieDetails = ({ details, credits }) => {
       <AppWrapper>
         <Header />
         <main>
-          <SearchBar />
+          <SearchBar searchPath={pathToSearchMovie} />
+
           <Container>
             <MovieDetails details={details} credits={credits} />
           </Container>

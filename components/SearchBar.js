@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { SearchIcon } from '../icons';
 import { Container } from '../styles/SharedStyles';
@@ -59,27 +60,42 @@ const StyledSearchBar = styled.div`
   }
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ searchPath }) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    if (searchTerm.length === 0) {
+      return;
+    } else {
+      router.push(`${searchPath}${searchTerm.trim()}?page=1`);
+    }
+  };
 
   return (
     <StyledSearchBar>
       <Container>
-        <button>
+        <button type="submit">
           <SearchIcon />
         </button>
-        <input
-          type="text"
-          placeholder={`Search for ${
-            router.pathname === '/movies'
-              ? 'Movies'
-              : router.pathname === '/tvseries'
-              ? 'TV Series'
-              : router.pathname === '/bookmarks'
-              ? 'Bookmarks'
-              : 'Movies or TV series'
-          }`}
-        />
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
+            placeholder={`Search for ${
+              router.pathname === '/movies'
+                ? 'Movies'
+                : router.pathname === '/tvseries'
+                ? 'TV Series'
+                : router.pathname === '/bookmarks'
+                ? 'Bookmarks'
+                : 'Movies or TV series'
+            }`}
+          />
+        </form>
       </Container>
     </StyledSearchBar>
   );

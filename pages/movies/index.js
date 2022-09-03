@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { server } from '../../config';
+import { pathToSearchMovie, server } from '../../config';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -18,7 +18,7 @@ export default function Movies({ nowPlaying }) {
       <AppWrapper>
         <Header />
         <main>
-          <SearchBar />
+          <SearchBar searchPath={pathToSearchMovie} />
           <Container>
             <Collection
               list={nowPlaying}

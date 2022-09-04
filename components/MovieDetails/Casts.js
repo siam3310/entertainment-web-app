@@ -34,11 +34,13 @@ const Casts = ({ credits }) => {
     <StyledCasts>
       <h3>Top Casts</h3>
       <div>
-        {credits
-          .map((credit) => {
-            return <Cast key={credit.id}>{credit.name}</Cast>;
-          })
-          .slice(0, 8) || []}
+        {credits[0]
+          ? credits
+              .map((credit) => {
+                return <Cast key={credit.id}>{credit.name}</Cast>;
+              })
+              .slice(0, 8) || []
+          : 'N/A'}
       </div>
     </StyledCasts>
   );

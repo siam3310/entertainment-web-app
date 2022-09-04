@@ -34,9 +34,11 @@ const Genres = ({ genres }) => {
     <StyledGenres>
       <h3>Genres</h3>
       <div>
-        {genres.map((genre, i) => {
-          return <Genre key={i}>{genre.name}</Genre>;
-        })}
+        {genres[0]
+          ? genres.map((genre, i) => {
+              return <Genre key={i}>{genre.name}</Genre>;
+            })
+          : 'N/A'}
       </div>
     </StyledGenres>
   );

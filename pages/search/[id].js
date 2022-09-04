@@ -31,7 +31,7 @@ export default function SearchMovies({ results, searchId }) {
             <Collection
               list={filteredResults}
               title={`Found ${results.length} results for '${searchId}'`}
-              mediaType="movie"
+              mediaType="all"
             />
           </Container>
         </main>

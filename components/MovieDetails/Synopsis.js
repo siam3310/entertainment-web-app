@@ -24,7 +24,7 @@ const Synopsis = ({ overview }) => {
   return (
     <StyledSynopsis>
       <h3>Synopsis</h3>
-      <p>{overview}</p>
+      <p>{`${overview ? `${overview}` : 'N/A'}`}</p>
     </StyledSynopsis>
   );
 };

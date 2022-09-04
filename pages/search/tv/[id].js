@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { BASE_URL, pathToSearchMovie } from '../../../lib/tmdb';
+import { BASE_URL, pathToSearchTv } from '../../../lib/tmdb';
 
 import Header from '../../../components/Header';
 import SearchBar from '../../../components/SearchBar';
@@ -19,15 +19,15 @@ export default function SearchMovies({ results, searchId }) {
         <Header />
         <main>
           <SearchBar
-            searchPath={pathToSearchMovie}
-            placeholder="Search for movies"
+            searchPath={pathToSearchTv}
+            placeholder="Search for TV series"
           />
 
           <Container>
             <Collection
               list={results}
               title={`Found ${results.length} results for '${searchId}'`}
-              mediaType="movie"
+              mediaType="tvseries"
             />
           </Container>
         </main>
@@ -35,14 +35,13 @@ export default function SearchMovies({ results, searchId }) {
     </>
   );
 }
-
 export async function getServerSideProps(context) {
   const { id } = context.query;
 
   const {
     data: { results },
   } = await axios.get(
-    `${BASE_URL}search/movie?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
+    `${BASE_URL}search/tv?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
   );
 
   return {

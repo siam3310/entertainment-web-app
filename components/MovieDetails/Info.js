@@ -45,42 +45,42 @@ const Info = ({
       {runtime ? (
         <div>
           <Placeholder>Length</Placeholder>
-          <p>{`${runtime ? `${runtime} min.` : 'N/A'} `}</p>
+          <p>{`${runtime ? `${runtime} min.` : 'N/A'}`}</p>
         </div>
       ) : (
         <div>
           <Placeholder>Language</Placeholder>
-          <p>{language[0].name}</p>
+          <p>{`${language[0] ? `${language[0].english_name}` : 'N/A'}`}</p>
         </div>
       )}
 
       {runtime ? (
         <div>
           <Placeholder>Language</Placeholder>
-          <p>{language[0].name}</p>
+          <p>{`${language[0] ? `${language[0].english_name}` : 'N/A'}`}</p>
         </div>
       ) : (
         <div>
           <Placeholder>First Air</Placeholder>
-          <p>{firstAirDate}</p>
+          <p>{`${firstAirDate ? `${firstAirDate}` : 'N/A'}`}</p>
         </div>
       )}
 
       {runtime ? (
         <div>
           <Placeholder>Year</Placeholder>
-          <p>{releaseDate.slice(0, 4)}</p>
+          <p>{`${releaseDate ? `${releaseDate.slice(0, 4)}` : 'N/A'}`}</p>
         </div>
       ) : (
         <div>
           <Placeholder>Last Air</Placeholder>
-          <p>{lastAirDate}</p>
+          <p>{`${lastAirDate ? `${lastAirDate}` : 'N/A'}`}</p>
         </div>
       )}
 
       <div>
         <Placeholder>Status</Placeholder>
-        <p>{status}</p>
+        <p>{`${status ? `${status}` : 'N/A'}`}</p>
       </div>
     </StyledInfo>
   );

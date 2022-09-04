@@ -17,7 +17,12 @@ const PosterImage = ({ posterPath, alt }) => {
   return (
     <StyledPoster>
       <Image
-        src={`https://image.tmdb.org/t/p/original${posterPath}`}
+        src={
+          posterPath
+            ? `https://image.tmdb.org/t/p/original${posterPath}`
+            : '/assets/placeholder-image.png'
+        }
+        objectFit="cover"
         alt={alt}
         layout="responsive"
         width={267}

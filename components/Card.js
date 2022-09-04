@@ -60,23 +60,42 @@ const CardDetails = styled.header`
 `;
 
 const Card = ({ item, mediaType }) => {
+  const {
+    id,
+    backdrop_path,
+    title,
+    name,
+    release_date,
+    first_air_date,
+    vote_average,
+  } = item;
   const router = useRouter();
 
   const showDetailsHandler = () => {
     if (mediaType === 'movie') {
-      router.push(`/movies/${item.id}`);
+      router.push(`/movies/${id}`);
     } else if (mediaType === 'tvseries') {
-      router.push(`/tvseries/${item.id}`);
+      router.push(`/tvseries/${id}`);
+    } else if (mediaType == 'all') {
+      release_date
+        ? router.push(`/movies/${id}`)
+        : router.push(`/tvseries/${id}`);
     }
   };
-  const releaseDate = item.release_date || [];
-  const firstAirDate = item.first_air_date || [];
+
+  const releaseDate = release_date || [];
+  const firstAirDate = first_air_date || [];
+
   return (
     <StyledCard onClick={showDetailsHandler}>
       <Thumbnail>
         <Image
-          src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-          alt={mediaType == 'movie' ? item.title : item.name}
+          src={
+            backdrop_path
+              ? `https://image.tmdb.org/t/p/original${backdrop_path}`
+              : '/assets/placeholder-image.png'
+          }
+          alt={title || name}
           layout="responsive"
           height={62}
           width={100}
@@ -85,17 +104,15 @@ const Card = ({ item, mediaType }) => {
       <CardDetails>
         <div>
           <p>
-            {mediaType == 'movie'
-              ? releaseDate.slice(0, 4)
-              : firstAirDate.slice(0, 4)}
+            {release_date ? releaseDate.slice(0, 4) : firstAirDate.slice(0, 4)}
           </p>
           <p>
-            {mediaType == 'movie' ? <MoviesIcon /> : <SeriesIcon />}
-            {mediaType == 'movie' ? 'Movie' : 'TV Series'}
+            {release_date ? <MoviesIcon /> : <SeriesIcon />}
+            {release_date ? 'Movie' : 'TV Series'}
           </p>
-          <p> {item.vote_average.toFixed(1)}</p>
+          <p> {vote_average.toFixed(1)}</p>
         </div>
-        <h3>{mediaType == 'movie' ? item.title : item.name}</h3>
+        <h3>{title || name}</h3>
       </CardDetails>
     </StyledCard>
   );

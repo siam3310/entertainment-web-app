@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { MoviesIcon, SeriesIcon } from '../icons';
 
@@ -79,13 +80,36 @@ const Gradient = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
 `;
 
-const SliderCard = (props) => {
+const SliderCard = ({
+  id,
+  backdropPath,
+  mediaType,
+  title,
+  name,
+  releaseDate,
+  firstAirDate,
+  voteAverage,
+}) => {
+  const router = useRouter();
+
+  const showDetailsHandler = () => {
+    if (mediaType === 'movie') {
+      router.push(`/movies/${id}`);
+    } else if (mediaType === 'tv') {
+      router.push(`/tvseries/${id}`);
+    }
+  };
+
   return (
-    <StyledSliderCard>
+    <StyledSliderCard onClick={showDetailsHandler}>
       <Thumbnail>
         <Image
-          src={`https://image.tmdb.org/t/p/original${props.image}`}
-          alt={props.media_type == 'movie' ? props.title : props.name}
+          src={
+            backdropPath
+              ? `https://image.tmdb.org/t/p/original${backdropPath}`
+              : '/assets/placeholder-image.png'
+          }
+          alt={title || name}
           layout="responsive"
           width={470}
           height={258}
@@ -94,17 +118,17 @@ const SliderCard = (props) => {
       <MovieCardDetails>
         <div>
           <p>
-            {props.media_type == 'movie'
-              ? props.release_date.slice(0, 4)
-              : props.first_air_date.slice(0, 4)}
+            {mediaType == 'movie'
+              ? releaseDate.slice(0, 4)
+              : firstAirDate.slice(0, 4)}
           </p>
           <p>
-            {props.media_type == 'movie' ? <MoviesIcon /> : <SeriesIcon />}
-            {props.media_type == 'movie' ? 'Movie' : 'TV Series'}
+            {mediaType == 'movie' ? <MoviesIcon /> : <SeriesIcon />}
+            {mediaType == 'movie' ? 'Movie' : 'TV Series'}
           </p>
-          <p> {props.vote_average.toFixed(1)}</p>
+          <p> {voteAverage.toFixed(1)}</p>
         </div>
-        <h3>{props.media_type == 'movie' ? props.title : props.name}</h3>
+        <h3>{title || name}</h3>
       </MovieCardDetails>
       <Gradient />
     </StyledSliderCard>

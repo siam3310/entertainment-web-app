@@ -45,13 +45,14 @@ const Slider = ({ trending }) => {
           return (
             <SwiperSlide key={movie.id}>
               <SliderCard
-                image={movie.backdrop_path || movie.posterPath}
-                media_type={movie.media_type}
+                id={movie.id}
+                backdropPath={movie.backdrop_path}
+                mediaType={movie.media_type}
                 title={movie.title}
                 name={movie.name}
-                release_date={movie.release_date}
-                first_air_date={movie.first_air_date}
-                vote_average={movie.vote_average}
+                releaseDate={movie.release_date || []}
+                firstAirDate={movie.first_air_date || []}
+                voteAverage={movie.vote_average}
               />
             </SwiperSlide>
           );

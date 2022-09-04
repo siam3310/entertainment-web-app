@@ -60,18 +60,41 @@ const Col2 = styled.div`
 `;
 
 const MovieDetails = ({ details, credits }) => {
+  const {
+    poster_path,
+    title,
+    name,
+    tagline,
+    vote_average,
+    runtime,
+    spoken_languages,
+    release_date,
+    first_air_date,
+    last_air_date,
+    status,
+    genres,
+    overview,
+  } = details;
+
   return (
     <StyledMovieDetails>
       <Col1>
-        <PosterImage {...details} />
+        <PosterImage posterPath={poster_path} alt={title || name} />
       </Col1>
 
       <Col2>
-        <Heading {...details} />
-        <Ratings {...details} />
-        <Info {...details} />
-        <Genres {...details} />
-        <Synopsis {...details} />
+        <Heading title={title || name} tagline={tagline} />
+        <Ratings ratings={vote_average} />
+        <Info
+          runtime={runtime}
+          language={spoken_languages}
+          releaseDate={release_date}
+          firstAirDate={first_air_date}
+          lastAirDate={last_air_date}
+          status={status}
+        />
+        <Genres genres={genres} />
+        <Synopsis overview={overview} />
         <Casts credits={credits} />
       </Col2>
     </StyledMovieDetails>

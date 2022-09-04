@@ -13,6 +13,7 @@ const StyledHeading = styled.div`
   h2 {
     font-weight: 300;
     font-size: var(--fs-slogan);
+    font-style: italic;
     color: ${({ theme }) => theme.colors.grey};
   }
 

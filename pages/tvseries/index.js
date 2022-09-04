@@ -27,7 +27,7 @@ export default function TvSeries({ popular }) {
             <Collection
               list={popular}
               title="Popular TV Series"
-              mediaType="tv"
+              mediaType="tvseries"
             />
           </Container>
         </main>

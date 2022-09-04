@@ -9,12 +9,15 @@ const StyledInfo = styled.div`
   margin-bottom: var(--mb-gap);
 
   p {
-    font-size: var(--fs-info);
+    font-size: 0.85rem;
   }
 
   @media (min-width: 600px) {
     margin-left: 0;
     margin-right: 0;
+    p {
+      font-size: var(--fs-info);
+    }
   }
   @media (min-width: 1024px) {
     max-width: 30rem;
@@ -29,21 +32,52 @@ const Placeholder = styled.p`
   }
 `;
 
-const Info = ({ runtime, spoken_languages, release_date, status }) => {
+const Info = ({
+  runtime,
+  language,
+  releaseDate,
+  firstAirDate,
+  lastAirDate,
+  status,
+}) => {
   return (
     <StyledInfo>
-      <div>
-        <Placeholder>Length</Placeholder>
-        <p>{`${runtime ? `${runtime} min.` : 'N/A'} `}</p>
-      </div>
-      <div>
-        <Placeholder>Language</Placeholder>
-        <p>{spoken_languages[0].name}</p>
-      </div>
-      <div>
-        <Placeholder>Year</Placeholder>
-        <p>{release_date.slice(0, 4)}</p>
-      </div>
+      {runtime ? (
+        <div>
+          <Placeholder>Length</Placeholder>
+          <p>{`${runtime ? `${runtime} min.` : 'N/A'} `}</p>
+        </div>
+      ) : (
+        <div>
+          <Placeholder>Language</Placeholder>
+          <p>{language[0].name}</p>
+        </div>
+      )}
+
+      {runtime ? (
+        <div>
+          <Placeholder>Language</Placeholder>
+          <p>{language[0].name}</p>
+        </div>
+      ) : (
+        <div>
+          <Placeholder>First Air</Placeholder>
+          <p>{firstAirDate}</p>
+        </div>
+      )}
+
+      {runtime ? (
+        <div>
+          <Placeholder>Year</Placeholder>
+          <p>{releaseDate.slice(0, 4)}</p>
+        </div>
+      ) : (
+        <div>
+          <Placeholder>Last Air</Placeholder>
+          <p>{lastAirDate}</p>
+        </div>
+      )}
+
       <div>
         <Placeholder>Status</Placeholder>
         <p>{status}</p>

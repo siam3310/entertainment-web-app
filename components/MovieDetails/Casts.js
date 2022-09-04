@@ -38,7 +38,7 @@ const Casts = ({ credits }) => {
           .map((credit) => {
             return <Cast key={credit.id}>{credit.name}</Cast>;
           })
-          .slice(0, 4) || []}
+          .slice(0, 8) || []}
       </div>
     </StyledCasts>
   );

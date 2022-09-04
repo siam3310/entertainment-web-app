@@ -13,12 +13,12 @@ const StyledPoster = styled.div`
   }
 `;
 
-const PosterImage = ({ poster_path, title, name }) => {
+const PosterImage = ({ posterPath, alt }) => {
   return (
     <StyledPoster>
       <Image
-        src={`https://image.tmdb.org/t/p/original${poster_path}`}
-        alt={title || name}
+        src={`https://image.tmdb.org/t/p/original${posterPath}`}
+        alt={alt}
         layout="responsive"
         width={267}
         height={400}

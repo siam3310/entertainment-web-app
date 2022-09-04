@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledRating = styled.div`
+const StyledRatings = styled.div`
   text-align: center;
   font-size: 2rem;
   margin-bottom: var(--mb-gap);
@@ -14,11 +14,11 @@ const StyledRating = styled.div`
   }
 `;
 
-const Ratings = ({ vote_average }) => {
+const Ratings = ({ ratings }) => {
   return (
-    <StyledRating>
-      <p>{vote_average.toFixed(1)}</p>
-    </StyledRating>
+    <StyledRatings>
+      <p>{ratings.toFixed(1)}</p>
+    </StyledRatings>
   );
 };
 

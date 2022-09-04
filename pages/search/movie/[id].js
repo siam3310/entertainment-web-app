@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { pathToSearchMovie, server } from '../../../config';
+import { BASE_URL, pathToSearchMovie } from '../../../lib/tmdb';
 
 import Header from '../../../components/Header';
 import SearchBar from '../../../components/SearchBar';
@@ -18,7 +18,10 @@ export default function SearchMovies({ results, searchId }) {
       <AppWrapper>
         <Header />
         <main>
-          <SearchBar searchPath={pathToSearchMovie} />
+          <SearchBar
+            searchPath={pathToSearchMovie}
+            placeholder="Search for movies"
+          />
 
           <Container>
             <Collection
@@ -39,9 +42,9 @@ export async function getServerSideProps(context) {
   const {
     data: { results },
   } = await axios.get(
-    `${server}search/movie?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
+    `${BASE_URL}search/movie?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
   );
-  console.log(context.query);
+
   return {
     props: { results, searchId: id },
   };

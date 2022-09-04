@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { pathToSearchMovie, server } from '../../config';
+import { BASE_URL, pathToSearchMovie } from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -18,7 +18,10 @@ export default function Movies({ nowPlaying }) {
       <AppWrapper>
         <Header />
         <main>
-          <SearchBar searchPath={pathToSearchMovie} />
+          <SearchBar
+            searchPath={pathToSearchMovie}
+            placeholder="Search for movies"
+          />
           <Container>
             <Collection
               list={nowPlaying}
@@ -36,7 +39,7 @@ export async function getStaticProps() {
   const {
     data: { results: nowPlaying },
   } = await axios.get(
-    `${server}movie/now_playing?api_key=${process.env.API_KEY}&language=en-US&page=1`
+    `${BASE_URL}movie/now_playing?api_key=${process.env.API_KEY}&language=en-US&page=1`
   );
 
   return {

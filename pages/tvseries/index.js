@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { server } from '../../config';
+import { BASE_URL, pathToSearchTv } from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -18,7 +18,11 @@ export default function TvSeries({ popular }) {
       <AppWrapper>
         <Header />
         <main>
-          <SearchBar />
+          <SearchBar
+            searchPath={pathToSearchTv}
+            placeholder="Search for TV series"
+          />
+
           <Container>
             <Collection
               list={popular}
@@ -36,7 +40,7 @@ export async function getStaticProps() {
   const {
     data: { results: popular },
   } = await axios.get(
-    `${server}tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
+    `${BASE_URL}tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
   );
 
   return {

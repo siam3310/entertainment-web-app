@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { pathToSearchAll, server } from '../../config';
+import { BASE_URL, pathToSearchAll } from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -12,7 +12,6 @@ export default function SearchMovies({ results, searchId }) {
   const filteredResults = results
     ? results.filter((item) => item.media_type !== 'person')
     : [];
-  console.log(filteredResults);
 
   return (
     <>
@@ -23,7 +22,10 @@ export default function SearchMovies({ results, searchId }) {
       <AppWrapper>
         <Header />
         <main>
-          <SearchBar searchPath={pathToSearchAll} />
+          <SearchBar
+            searchPath={pathToSearchAll}
+            placeholder="Search for movies or TV series"
+          />
 
           <Container>
             <Collection
@@ -44,7 +46,7 @@ export async function getServerSideProps(context) {
   const {
     data: { results },
   } = await axios.get(
-    `${server}search/multi?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
+    `${BASE_URL}search/multi?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
   );
   return {
     props: { results, searchId: id },

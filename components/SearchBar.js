@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';
+
 import { SearchIcon } from '../icons';
 import { Container } from '../styles/SharedStyles';
 
@@ -60,7 +61,7 @@ const StyledSearchBar = styled.div`
   }
 `;
 
-const SearchBar = ({ searchPath }) => {
+const SearchBar = ({ searchPath, placeholder }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
 
@@ -71,6 +72,7 @@ const SearchBar = ({ searchPath }) => {
       return;
     } else {
       router.push(`${searchPath}${searchTerm.trim()}?page=1`);
+      setSearchTerm('');
     }
   };
 
@@ -85,15 +87,7 @@ const SearchBar = ({ searchPath }) => {
             type="text"
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
-            placeholder={`Search for ${
-              router.pathname === '/movies'
-                ? 'Movies'
-                : router.pathname === '/tvseries'
-                ? 'TV Series'
-                : router.pathname === '/bookmarks'
-                ? 'Bookmarks'
-                : 'Movies or TV series'
-            }`}
+            placeholder={placeholder}
           />
         </form>
       </Container>

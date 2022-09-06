@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { MoviesIcon, SeriesIcon } from '../icons';
+import { MoviesIcon, SeriesIcon, StarIcon } from '../icons';
 
 const StyledCard = styled.article`
   cursor: pointer;
@@ -14,6 +14,8 @@ const Thumbnail = styled.div`
 `;
 
 const CardDetails = styled.header`
+  display: grid;
+
   div {
     display: flex;
     gap: 1.2rem;
@@ -24,19 +26,20 @@ const CardDetails = styled.header`
   div p {
     position: relative;
     color: rgba(255, 255, 255, 0.75);
-    font-size: clamp(0.7rem, 2vw, 0.8rem);
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
     font-weight: 300;
   }
 
-  div p:nth-child(2) {
+  div p:nth-child(2),
+  div p:nth-child(3) {
     display: flex;
     align-items: center;
     gap: 0.4rem;
     flex-shrink: 0;
 
     svg {
-      height: 12px;
-      width: 12px;
+      height: 1em;
+      width: 1em;
     }
   }
 
@@ -55,7 +58,9 @@ const CardDetails = styled.header`
 
   h3 {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
-    white-space: wrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -97,8 +102,11 @@ const Card = ({ item, mediaType }) => {
           }
           alt={title || name}
           layout="responsive"
-          height={62}
-          width={100}
+          objectFit="cover"
+          // height={62}
+          // width={100}
+          height={'164px'}
+          width={'268px'}
         />
       </Thumbnail>
       <CardDetails>
@@ -110,7 +118,9 @@ const Card = ({ item, mediaType }) => {
             {release_date ? <MoviesIcon /> : <SeriesIcon />}
             {release_date ? 'Movie' : 'TV Series'}
           </p>
-          <p> {vote_average.toFixed(1)}</p>
+          <p>
+            <StarIcon /> {vote_average.toFixed(1)}
+          </p>
         </div>
         <h3>{title || name}</h3>
       </CardDetails>

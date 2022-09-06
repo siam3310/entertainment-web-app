@@ -6,48 +6,51 @@ import { SearchIcon } from '../icons';
 import { Container } from '../styles/SharedStyles';
 
 const StyledSearchBar = styled.div`
-  margin: 1rem 0 1.5rem;
+  --placeholder: 0.9rem;
+  --fs-btn: 0.7rem;
+  --svg-height: 1.1rem;
+  --svg-width: 1.1rem;
+  --form-gap: 0.7rem;
+  margin: 1.1rem 0 1.3rem;
+
+  @media (min-width: 600px) {
+    --placeholder: 1rem;
+    --fs-btn: 0.75rem;
+    --svg-height: 1.2rem;
+    --svg-width: 1.2rem;
+    --form-gap: 0.8rem;
+  }
 
   @media (min-width: 768px) {
-    margin: 1rem 0 1.8rem;
+    --placeholder: 1.1rem;
+    --fs-btn: 0.8rem;
+    --svg-height: 1.3rem;
+    --svg-width: 1.3rem;
+    --form-gap: 0.9rem;
+    margin: 1.2rem 0 1.8rem;
   }
 
   @media (min-width: 1024px) {
-    margin: 1.25rem 0 2.3rem;
+    --placeholder: 1.4rem;
+    --fs-btn: 0.95rem;
+    --svg-height: 1.75rem;
+    --svg-width: 1.75rem;
+    --form-gap: 1rem;
+    margin: 1.5rem 0 2.3rem;
   }
+`;
 
-  & > div {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  button {
-    cursor: pointer;
-    display: grid;
-    svg {
-      color: #fff;
-      flex-shrink: 0;
-      width: 1.4rem;
-      height: 1.4rem;
-
-      @media (min-width: 600px) {
-        width: 1.6rem;
-        height: 1.6rem;
-      }
-
-      @media (min-width: 768px) {
-        width: 1.7rem;
-        height: 1.7rem;
-      }
-    }
-  }
+const Form = styled.form`
+  display: flex;
+  align-items: flex-end;
+  gap: var(--form-gap);
 
   input {
     border: none;
     background-color: transparent;
     color: white;
-    font-size: clamp(0.95rem, 2.8vw, 1.4rem);
+    font-size: var(--placeholder);
+
     width: 100%;
     padding: 0.4em 0;
     font-weight: 300;
@@ -59,6 +62,23 @@ const StyledSearchBar = styled.div`
       margin-bottom: -1px;
     }
   }
+`;
+
+const IconContainer = styled.div`
+  color: #fff;
+  flex-shrink: 0;
+  width: var(--svg-width);
+  height: var(--svg-height);
+  align-self: center;
+`;
+
+const SearchBtn = styled.button`
+  font-size: var(--fs-btn);
+  border-radius: 0.4em;
+  padding: 0.75em 0.9em 0.8em;
+  color: #fff;
+  background: ${({ theme }) => theme.colors.greyishBlue};
+  font-weight: 300;
 `;
 
 const SearchBar = ({ searchPath, placeholder }) => {
@@ -79,17 +99,18 @@ const SearchBar = ({ searchPath, placeholder }) => {
   return (
     <StyledSearchBar>
       <Container>
-        <button type="submit">
-          <SearchIcon />
-        </button>
-        <form onSubmit={handleSearch}>
+        <Form onSubmit={handleSearch}>
+          <IconContainer>
+            <SearchIcon />
+          </IconContainer>
           <input
             type="text"
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
             placeholder={placeholder}
           />
-        </form>
+          <SearchBtn type="submit">Search</SearchBtn>
+        </Form>
       </Container>
     </StyledSearchBar>
   );

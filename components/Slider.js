@@ -15,7 +15,7 @@ const SwiperWrapper = styled.div`
   }
 
   @media (min-width: 1024px) {
-    margin-bottom: 2.6rem;
+    margin-bottom: 2.8rem;
   }
 `;
 
@@ -27,13 +27,13 @@ const Slider = ({ trending }) => {
       <Swiper
         modules={[FreeMode]}
         spaceBetween={16}
-        slidesPerView={1.7}
+        slidesPerView={1.5}
         slidesOffsetAfter={64}
         freeMode={true}
         breakpoints={{
           600: {
             spaceBetween: 24,
-            slidesPerView: 2.5,
+            slidesPerView: 1.8,
           },
           1024: {
             slidesPerView: 2.4,

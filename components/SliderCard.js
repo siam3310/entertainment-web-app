@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { MoviesIcon, SeriesIcon } from '../icons';
+import { MoviesIcon, SeriesIcon, StarIcon } from '../icons';
 
 const StyledSliderCard = styled.article`
   cursor: pointer;
@@ -13,10 +13,6 @@ const StyledSliderCard = styled.article`
 const Thumbnail = styled.div`
   overflow: hidden;
   border-radius: 8px;
-
-  img {
-    object-fit: cover;
-  }
 `;
 
 const MovieCardDetails = styled.header`
@@ -24,6 +20,8 @@ const MovieCardDetails = styled.header`
   z-index: 10;
   bottom: 11%;
   left: 7%;
+  right: 7%;
+  display: grid;
 
   div {
     display: flex;
@@ -39,15 +37,17 @@ const MovieCardDetails = styled.header`
     font-weight: 300;
   }
 
-  div p:nth-child(2) {
+  div p:nth-child(2),
+  div p:nth-child(3) {
     display: flex;
     align-items: center;
     gap: 0.4rem;
     flex-shrink: 0;
 
     svg {
-      height: 12px;
-      width: 12px;
+      margin-top: -0.2em;
+      height: 1em;
+      width: 1em;
     }
   }
 
@@ -67,6 +67,9 @@ const MovieCardDetails = styled.header`
   h3 {
     font-size: clamp(1rem, 2.6vw, 1.6rem);
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -111,6 +114,7 @@ const SliderCard = ({
           }
           alt={title || name}
           layout="responsive"
+          objectFit="cover"
           width={470}
           height={258}
         />
@@ -126,7 +130,9 @@ const SliderCard = ({
             {mediaType == 'movie' ? <MoviesIcon /> : <SeriesIcon />}
             {mediaType == 'movie' ? 'Movie' : 'TV Series'}
           </p>
-          <p> {voteAverage.toFixed(1)}</p>
+          <p>
+            <StarIcon /> {voteAverage.toFixed(1)}
+          </p>
         </div>
         <h3>{title || name}</h3>
       </MovieCardDetails>

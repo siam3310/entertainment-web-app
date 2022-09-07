@@ -8,7 +8,7 @@ import Collection from '../../components/Collection';
 
 import { AppWrapper, Container } from '../../styles/SharedStyles';
 
-export default function SearchMovies({ results, searchId }) {
+export default function SearchMovies({ results, searchId, totalResults }) {
   const filteredResults = results
     ? results.filter((item) => item.media_type !== 'person')
     : [];
@@ -30,7 +30,7 @@ export default function SearchMovies({ results, searchId }) {
           <Container>
             <Collection
               list={filteredResults}
-              title={`Found ${results.length} results for '${searchId}'`}
+              title={`Found ${totalResults} results for '${searchId}'`}
               mediaType="all"
             />
           </Container>
@@ -44,11 +44,15 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
 
   const {
-    data: { results },
+    data: { results, total_results },
   } = await axios.get(
     `${BASE_URL}search/multi?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
   );
   return {
-    props: { results, searchId: id },
+    props: {
+      results,
+      searchId: id,
+      totalResults: total_results,
+    },
   };
 }

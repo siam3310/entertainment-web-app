@@ -145,12 +145,12 @@ const navLinks = [
     text: 'tvseries',
     icon: <SeriesIcon />,
   },
-  {
-    id: 4,
-    url: '/bookmarks',
-    text: 'bookmarks',
-    icon: <BookmarksIcon />,
-  },
+  // {
+  //   id: 4,
+  //   url: '/bookmarks',
+  //   text: 'bookmarks',
+  //   icon: <BookmarksIcon />,
+  // },
 ];
 
 const Header = () => {

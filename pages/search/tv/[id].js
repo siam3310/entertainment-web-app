@@ -8,7 +8,7 @@ import Collection from '../../../components/Collection';
 
 import { AppWrapper, Container } from '../../../styles/SharedStyles';
 
-export default function SearchMovies({ results, searchId }) {
+export default function SearchMovies({ results, searchId, totalResults }) {
   return (
     <>
       <Head>
@@ -26,7 +26,7 @@ export default function SearchMovies({ results, searchId }) {
           <Container>
             <Collection
               list={results}
-              title={`Found ${results.length} results for '${searchId}'`}
+              title={`Found ${totalResults} results for '${searchId}'`}
               mediaType="tvseries"
             />
           </Container>
@@ -39,12 +39,16 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
 
   const {
-    data: { results },
+    data: { results, total_results },
   } = await axios.get(
     `${BASE_URL}search/tv?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
   );
 
   return {
-    props: { results, searchId: id },
+    props: {
+      results,
+      searchId: id,
+      totalResults: total_results,
+    },
   };
 }

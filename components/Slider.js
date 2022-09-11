@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper';
 import 'swiper/css';
-import { Heading } from '../styles/SharedStyles';
+
+import Heading from './Heading';
 import SliderCard from './SliderCard';
 
 const SwiperWrapper = styled.div`
   margin-bottom: 1.6rem;
-  margin-right: -4rem;
   cursor: pointer;
 
   @media (min-width: 768px) {
@@ -19,12 +19,16 @@ const SwiperWrapper = styled.div`
   }
 `;
 
-const Slider = ({ trending }) => {
+const StyledSwiper = styled(Swiper)`
+  margin-right: -4rem;
+`;
+
+const Slider = ({ trending, href }) => {
   return (
     <SwiperWrapper>
-      <Heading>Trending</Heading>
+      <Heading title="Trending" href={href} />
 
-      <Swiper
+      <StyledSwiper
         modules={[FreeMode]}
         spaceBetween={16}
         slidesPerView={1.5}
@@ -57,7 +61,7 @@ const Slider = ({ trending }) => {
             </SwiperSlide>
           );
         })}
-      </Swiper>
+      </StyledSwiper>
     </SwiperWrapper>
   );
 };

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Heading } from '../styles/SharedStyles';
 import { sliceArray } from '../utils';
-import Card from './Card';
+import CollectionCard from './CollectionCard';
+import Heading from './Heading';
 
 const StyledCollection = styled.div`
   margin-bottom: 2rem;
@@ -31,27 +31,16 @@ const Grid = styled.div`
   }
 `;
 
-const Flex = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const ShowMoreBtn = styled.button`
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.greyishBlue};
-  font-size: clamp(0.7rem, 1.8vw, 0.9rem);
-`;
-
-const Collection = ({ list, title, mediaType }) => {
+const Collection = ({ list, title, mediaType, limit, href }) => {
   return (
     <StyledCollection>
-      <Flex>
-        <Heading>{title}</Heading>
-        <ShowMoreBtn>See more</ShowMoreBtn>
-      </Flex>
+      <Heading title={title} href={href} />
+
       <Grid>
-        {sliceArray(list, 12).map((item) => {
-          return <Card key={item.id} item={item} mediaType={mediaType} />;
+        {sliceArray(list, limit || 20).map((item) => {
+          return (
+            <CollectionCard key={item.id} item={item} mediaType={mediaType} />
+          );
         })}
       </Grid>
     </StyledCollection>

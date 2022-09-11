@@ -31,17 +31,3 @@ export const AppWrapper = styled.div`
     padding: 2rem;
   }
 `;
-
-export const Heading = styled.h1`
-  font-size: clamp(1.1rem, 2.5vw, 1.85rem);
-  font-weight: 300;
-  margin-bottom: 1rem;
-
-  @media (min-width: 768px) {
-    margin-bottom: 1.2rem;
-  }
-
-  @media (min-width: 1024px) {
-    margin-bottom: 1.5rem;
-  }
-`;

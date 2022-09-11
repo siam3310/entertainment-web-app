@@ -26,11 +26,14 @@ export default function Home({ trending, popularMovies }) {
           />
 
           <Container>
-            <Slider trending={trending} />
+            <Slider trending={trending} href="/trending/1" />
+
             <Collection
               list={popularMovies}
               title="Popular Movies"
               mediaType="movie"
+              limit="12"
+              href="/movies/popular/1"
             />
           </Container>
         </main>

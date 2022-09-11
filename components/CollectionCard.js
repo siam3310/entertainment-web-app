@@ -103,8 +103,6 @@ const Card = ({ item, mediaType }) => {
           alt={title || name}
           layout="responsive"
           objectFit="cover"
-          // height={62}
-          // width={100}
           height={'164px'}
           width={'268px'}
         />

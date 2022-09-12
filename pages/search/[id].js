@@ -1,16 +1,21 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { BASE_URL, pathToSearchAll } from '../../lib/tmdb';
+import { pathToSearchAll, search } from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
 import Collection from '../../components/Collection';
+import PaginationImproved from '../../components/PaginationImproved';
 
 import { AppWrapper, Container } from '../../styles/SharedStyles';
 
-export default function SearchMovies({ results, searchId, totalResults }) {
-  const filteredResults = results
-    ? results.filter((item) => item.media_type !== 'person')
+export default function SearchMovies({ data, id, page }) {
+  const currentPage = Number(page);
+  const isFirst = currentPage === 1;
+  const isLast = data ? currentPage === data.total_pages : false;
+
+  const filteredResults = data
+    ? data.results.filter((item) => item.media_type !== 'person')
     : [];
 
   return (
@@ -30,8 +35,20 @@ export default function SearchMovies({ results, searchId, totalResults }) {
           <Container>
             <Collection
               list={filteredResults}
-              title={`Found ${totalResults} results for '${searchId}'`}
+              title={`Found ${data.total_results} results for '${id}'`}
               mediaType="all"
+            />
+
+            <PaginationImproved
+              currentPageAdvance={currentPage + 1}
+              currentPage={currentPage}
+              prevHref={`${pathToSearchAll}${id}?page=${currentPage - 1}`}
+              nextHref={`${pathToSearchAll}${id}?page=${currentPage + 1}`}
+              isFirst={isFirst}
+              isLast={isLast}
+              goToPreviousPage={() => currentPage - 1}
+              goToNextPage={() => currentPage + 1}
+              totalPages={data.total_pages}
             />
           </Container>
         </main>
@@ -41,18 +58,16 @@ export default function SearchMovies({ results, searchId, totalResults }) {
 }
 
 export async function getServerSideProps(context) {
-  const { id } = context.query;
+  const { id, page } = context.query;
 
-  const {
-    data: { results, total_results },
-  } = await axios.get(
-    `${BASE_URL}search/multi?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
-  );
+  const url = search(id, page);
+  const { data } = await axios.get(url);
+
   return {
     props: {
-      results,
-      searchId: id,
-      totalResults: total_results,
+      data,
+      id,
+      page,
     },
   };
 }

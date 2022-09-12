@@ -18,8 +18,8 @@ const Anchor = styled.a`
   align-items: center;
   gap: 0.5rem;
   pointer-events: ${(props) =>
-    props.isFirst && props.isFirst ? 'none' : 'unset'};
-  opacity: ${(props) => (props.isFirst && props.isFirst ? '0.2' : 'unset')};
+    props.isFirst || props.isLast ? 'none' : 'unset'};
+  opacity: ${(props) => (props.isFirst || props.isLast ? '0.2' : 'unset')};
 
   svg {
     height: 1rem;

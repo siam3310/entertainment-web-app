@@ -1,18 +1,23 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { BASE_URL, pathToSearchTv } from '../../../lib/tmdb';
+import { pathToSearchTv, searchTv } from '../../../lib/tmdb';
 
 import Header from '../../../components/Header';
 import SearchBar from '../../../components/SearchBar';
 import Collection from '../../../components/Collection';
+import PaginationImproved from '../../../components/PaginationImproved';
 
 import { AppWrapper, Container } from '../../../styles/SharedStyles';
 
-export default function SearchMovies({ results, searchId, totalResults }) {
+export default function SearchMovies({ data, id, page }) {
+  const currentPage = Number(page);
+  const isFirst = currentPage === 1;
+  const isLast = data ? currentPage === data.total_pages : false;
+
   return (
     <>
       <Head>
-        <title> {searchId} - Search Results | Entertainment</title>
+        <title> {id} - Search Results | Entertainment</title>
       </Head>
 
       <AppWrapper>
@@ -25,9 +30,21 @@ export default function SearchMovies({ results, searchId, totalResults }) {
 
           <Container>
             <Collection
-              list={results}
-              title={`Found ${totalResults} results for '${searchId}'`}
+              list={data.results}
+              title={`Found ${data.total_results} results for '${id}'`}
               mediaType="tvseries"
+            />
+
+            <PaginationImproved
+              currentPageAdvance={currentPage + 1}
+              currentPage={currentPage}
+              prevHref={`${pathToSearchTv}${id}?page=${currentPage - 1}`}
+              nextHref={`${pathToSearchTv}${id}?page=${currentPage + 1}`}
+              isFirst={isFirst}
+              isLast={isLast}
+              goToPreviousPage={() => currentPage - 1}
+              goToNextPage={() => currentPage + 1}
+              totalPages={data.total_pages}
             />
           </Container>
         </main>
@@ -35,20 +52,18 @@ export default function SearchMovies({ results, searchId, totalResults }) {
     </>
   );
 }
-export async function getServerSideProps(context) {
-  const { id } = context.query;
 
-  const {
-    data: { results, total_results },
-  } = await axios.get(
-    `${BASE_URL}search/tv?api_key=${process.env.API_KEY}&query=${id}&language=en-US&page=1&include_adult=false`
-  );
+export async function getServerSideProps(context) {
+  const { id, page } = context.query;
+
+  const url = searchTv(id, page);
+  const { data } = await axios.get(url);
 
   return {
     props: {
-      results,
-      searchId: id,
-      totalResults: total_results,
+      data,
+      id,
+      page,
     },
   };
 }

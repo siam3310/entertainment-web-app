@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import axios from 'axios';
-import { BASE_URL, pathToSearchTv } from '../../lib/tmdb';
+import { getTvCasts, getTvDetail, pathToSearchTv } from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -33,15 +32,10 @@ const tvSeriesDetails = ({ details, credits }) => {
 };
 
 export async function getServerSideProps(context) {
-  const tvId = context.query.id;
+  const { id } = context.query;
 
-  const { data: details } = await axios.get(
-    `${BASE_URL}tv/${tvId}?api_key=${process.env.API_KEY}&language=en-US`
-  );
-
-  const { data: credits } = await axios.get(
-    `${BASE_URL}tv/${tvId}/credits?api_key=${process.env.API_KEY}&language=en-US`
-  );
+  const { data: details } = await getTvDetail(id);
+  const { data: credits } = await getTvCasts(id);
 
   return {
     props: { details, credits: credits.cast },

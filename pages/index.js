@@ -1,6 +1,10 @@
 import Head from 'next/head';
-import axios from 'axios';
-import { BASE_URL, pathToSearchAll } from '../lib/tmdb';
+import {
+  pathToSearchAll,
+  getData,
+  trendingAllDay,
+  moviePopular,
+} from '../lib/tmdb';
 
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
@@ -45,15 +49,11 @@ export default function Home({ trending, popularMovies }) {
 export async function getStaticProps() {
   const {
     data: { results: trending },
-  } = await axios.get(
-    `${BASE_URL}trending/all/day?api_key=${process.env.API_KEY}&language=en-US&page=1`
-  );
+  } = await getData(trendingAllDay);
 
   const {
     data: { results: popularMovies },
-  } = await axios.get(
-    `${BASE_URL}movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
-  );
+  } = await getData(moviePopular);
 
   return {
     props: {

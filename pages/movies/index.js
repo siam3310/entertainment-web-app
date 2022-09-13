@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import axios from 'axios';
-import { BASE_URL, pathToSearchMovie } from '../../lib/tmdb';
+import { getData, movieNowPlaying, pathToSearchMovie } from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -27,6 +26,7 @@ export default function Movies({ nowPlaying }) {
               list={nowPlaying}
               title="Now Playing"
               mediaType="movie"
+              limit={12}
             />
           </Container>
         </main>
@@ -38,9 +38,7 @@ export default function Movies({ nowPlaying }) {
 export async function getStaticProps() {
   const {
     data: { results: nowPlaying },
-  } = await axios.get(
-    `${BASE_URL}movie/now_playing?api_key=${process.env.API_KEY}&language=en-US&page=1`
-  );
+  } = await getData(movieNowPlaying);
 
   return {
     props: {

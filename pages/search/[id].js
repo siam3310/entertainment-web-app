@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import axios from 'axios';
 import { pathToSearchAll, search } from '../../lib/tmdb';
 
 import Header from '../../components/Header';
@@ -38,18 +37,19 @@ export default function SearchMovies({ data, id, page }) {
               title={`Found ${data.total_results} results for '${id}'`}
               mediaType="all"
             />
-
-            <PaginationImproved
-              currentPageAdvance={currentPage + 1}
-              currentPage={currentPage}
-              prevHref={`${pathToSearchAll}${id}?page=${currentPage - 1}`}
-              nextHref={`${pathToSearchAll}${id}?page=${currentPage + 1}`}
-              isFirst={isFirst}
-              isLast={isLast}
-              goToPreviousPage={() => currentPage - 1}
-              goToNextPage={() => currentPage + 1}
-              totalPages={data.total_pages}
-            />
+            {!data.total_results == 0 && (
+              <PaginationImproved
+                currentPageAdvance={currentPage + 1}
+                currentPage={currentPage}
+                prevHref={`${pathToSearchAll}${id}?page=${currentPage - 1}`}
+                nextHref={`${pathToSearchAll}${id}?page=${currentPage + 1}`}
+                isFirst={isFirst}
+                isLast={isLast}
+                goToPreviousPage={() => currentPage - 1}
+                goToNextPage={() => currentPage + 1}
+                totalPages={data.total_pages}
+              />
+            )}
           </Container>
         </main>
       </AppWrapper>
@@ -60,8 +60,7 @@ export default function SearchMovies({ data, id, page }) {
 export async function getServerSideProps(context) {
   const { id, page } = context.query;
 
-  const url = search(id, page);
-  const { data } = await axios.get(url);
+  const { data } = await search(id, page);
 
   return {
     props: {

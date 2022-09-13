@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import axios from 'axios';
-import { BASE_URL, pathToSearchTv } from '../../lib/tmdb';
+import { getData, pathToSearchTv, tvAiringToday } from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -8,7 +7,7 @@ import Collection from '../../components/Collection';
 
 import { AppWrapper, Container } from '../../styles/SharedStyles';
 
-export default function TvSeries({ popular }) {
+export default function TvSeries({ airingToday }) {
   return (
     <>
       <Head>
@@ -25,9 +24,10 @@ export default function TvSeries({ popular }) {
 
           <Container>
             <Collection
-              list={popular}
-              title="Popular TV Series"
+              list={airingToday}
+              title="Airing Today"
               mediaType="tvseries"
+              limit={12}
             />
           </Container>
         </main>
@@ -38,14 +38,12 @@ export default function TvSeries({ popular }) {
 
 export async function getStaticProps() {
   const {
-    data: { results: popular },
-  } = await axios.get(
-    `${BASE_URL}tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
-  );
+    data: { results: airingToday },
+  } = await getData(tvAiringToday);
 
   return {
     props: {
-      popular,
+      airingToday,
     },
   };
 }

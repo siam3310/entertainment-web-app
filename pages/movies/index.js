@@ -1,5 +1,11 @@
 import Head from 'next/head';
-import { getData, movieNowPlaying, pathToSearchMovie } from '../../lib/tmdb';
+import {
+  getData,
+  movieNowPlaying,
+  movieTopRated,
+  movieUpcoming,
+  pathToSearchMovie,
+} from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -7,7 +13,7 @@ import Collection from '../../components/Collection';
 
 import { AppWrapper, Container } from '../../styles/SharedStyles';
 
-export default function Movies({ nowPlaying }) {
+export default function Movies({ nowPlaying, topRated, upcoming }) {
   return (
     <>
       <Head>
@@ -24,9 +30,26 @@ export default function Movies({ nowPlaying }) {
           <Container>
             <Collection
               list={nowPlaying}
-              title="Now Playing"
+              title="Now Playing Movies"
               mediaType="movie"
               limit={12}
+              href="/movies/now/1"
+            />
+
+            <Collection
+              list={topRated}
+              title="Top Rated Movies"
+              mediaType="movie"
+              limit={12}
+              href="/movies/top/1"
+            />
+
+            <Collection
+              list={upcoming}
+              title="Upcoming Movies"
+              mediaType="movie"
+              limit={12}
+              href="/movies/upcoming/1"
             />
           </Container>
         </main>
@@ -40,9 +63,19 @@ export async function getStaticProps() {
     data: { results: nowPlaying },
   } = await getData(movieNowPlaying);
 
+  const {
+    data: { results: topRated },
+  } = await getData(movieTopRated);
+
+  const {
+    data: { results: upcoming },
+  } = await getData(movieUpcoming);
+
   return {
     props: {
       nowPlaying,
+      topRated,
+      upcoming,
     },
   };
 }

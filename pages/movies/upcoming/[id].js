@@ -11,11 +11,11 @@ import PaginationImproved from '../../../components/PaginationImproved';
 
 import { AppWrapper, Container } from '../../../styles/SharedStyles';
 
-export default function PopularMovies() {
+export default function UpcomingMovies() {
   const router = useRouter();
   const { id } = router.query;
   const currentPage = Number(id);
-  const { data, error } = useSWR(`/api/movie/popular/${currentPage}`, fetcher);
+  const { data, error } = useSWR(`/api/movie/upcoming/${currentPage}`, fetcher);
   const isFirst = currentPage === 1;
   const isLast = data ? currentPage === data.total_pages : false;
 
@@ -39,8 +39,8 @@ export default function PopularMovies() {
                 <PaginationImproved
                   currentPageAdvance={currentPage + 1}
                   currentPage={currentPage}
-                  prevHref={`/movies/popular/${currentPage - 1}`}
-                  nextHref={`/movies/popular/${currentPage + 1}`}
+                  prevHref={`/movies/upcoming/${currentPage - 1}`}
+                  nextHref={`/movies/upcoming/${currentPage + 1}`}
                   isFirst={isFirst}
                   isLast={isLast}
                   goToPreviousPage={() => currentPage - 1}
@@ -49,14 +49,14 @@ export default function PopularMovies() {
                 />
                 <Collection
                   list={data.results}
-                  title="Popular Movies"
+                  title="Upcoming Movies"
                   mediaType="movie"
                 />
                 <PaginationImproved
                   currentPageAdvance={currentPage + 1}
                   currentPage={currentPage}
-                  prevHref={`/movies/popular/${currentPage - 1}`}
-                  nextHref={`/movies/popular/${currentPage + 1}`}
+                  prevHref={`/movies/upcoming/${currentPage - 1}`}
+                  nextHref={`/movies/upcoming/${currentPage + 1}`}
                   isFirst={isFirst}
                   isLast={isLast}
                   goToPreviousPage={() => currentPage - 1}

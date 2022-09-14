@@ -1,5 +1,11 @@
 import Head from 'next/head';
-import { getData, pathToSearchTv, tvAiringToday } from '../../lib/tmdb';
+import {
+  getData,
+  pathToSearchTv,
+  tvAiringToday,
+  tvOnTheAir,
+  tvTopRated,
+} from '../../lib/tmdb';
 
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
@@ -7,7 +13,7 @@ import Collection from '../../components/Collection';
 
 import { AppWrapper, Container } from '../../styles/SharedStyles';
 
-export default function TvSeries({ airingToday }) {
+export default function TvSeries({ airingToday, topRated, onTheAir }) {
   return (
     <>
       <Head>
@@ -24,10 +30,27 @@ export default function TvSeries({ airingToday }) {
 
           <Container>
             <Collection
+              list={onTheAir}
+              title="On The Air"
+              mediaType="tvseries"
+              limit={12}
+              href="/tvseries/onair/1"
+            />
+
+            <Collection
+              list={topRated}
+              title="Top Rated"
+              mediaType="tvseries"
+              limit={12}
+              href="/tvseries/top/1"
+            />
+
+            <Collection
               list={airingToday}
               title="Airing Today"
               mediaType="tvseries"
               limit={12}
+              href="/tvseries/airing/1"
             />
           </Container>
         </main>
@@ -41,9 +64,19 @@ export async function getStaticProps() {
     data: { results: airingToday },
   } = await getData(tvAiringToday);
 
+  const {
+    data: { results: topRated },
+  } = await getData(tvTopRated);
+
+  const {
+    data: { results: onTheAir },
+  } = await getData(tvOnTheAir);
+
   return {
     props: {
       airingToday,
+      topRated,
+      onTheAir,
     },
   };
 }

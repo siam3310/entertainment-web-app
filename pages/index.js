@@ -4,6 +4,7 @@ import {
   getData,
   trendingAllDay,
   moviePopular,
+  tvPopular,
 } from '../lib/tmdb';
 
 import Header from '../components/Header';
@@ -13,7 +14,7 @@ import Collection from '../components/Collection';
 
 import { AppWrapper, Container } from '../styles/SharedStyles';
 
-export default function Home({ trending, popularMovies }) {
+export default function Home({ trending, popularMovies, popularTvSeries }) {
   return (
     <>
       <Head>
@@ -39,6 +40,14 @@ export default function Home({ trending, popularMovies }) {
               limit="12"
               href="/movies/popular/1"
             />
+
+            <Collection
+              list={popularTvSeries}
+              title="Popular TV Series"
+              mediaType="tvseries"
+              limit="12"
+              href="/tvseries/popular/1"
+            />
           </Container>
         </main>
       </AppWrapper>
@@ -55,10 +64,15 @@ export async function getStaticProps() {
     data: { results: popularMovies },
   } = await getData(moviePopular);
 
+  const {
+    data: { results: popularTvSeries },
+  } = await getData(tvPopular);
+
   return {
     props: {
       trending,
       popularMovies,
+      popularTvSeries,
     },
   };
 }

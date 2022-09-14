@@ -8,7 +8,7 @@ import PaginationImproved from '../../../components/PaginationImproved';
 
 import { AppWrapper, Container } from '../../../styles/SharedStyles';
 
-export default function SearchMovies({ data, id, page }) {
+export default function SearchTvSeries({ data, id, page }) {
   const currentPage = Number(page);
   const isFirst = currentPage === 1;
   const isLast = data ? currentPage === data.total_pages : false;

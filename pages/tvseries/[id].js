@@ -7,7 +7,7 @@ import MovieDetails from '../../components/MovieDetails';
 
 import { AppWrapper, Container } from '../../styles/SharedStyles';
 
-const tvSeriesDetails = ({ details, credits }) => {
+export default function Details({ details, credits }) {
   return (
     <>
       <Head>
@@ -29,7 +29,7 @@ const tvSeriesDetails = ({ details, credits }) => {
       </AppWrapper>
     </>
   );
-};
+}
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -41,5 +41,3 @@ export async function getServerSideProps(context) {
     props: { details, credits: credits.cast },
   };
 }
-
-export default tvSeriesDetails;

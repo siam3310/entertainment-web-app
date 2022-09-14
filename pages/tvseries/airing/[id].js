@@ -22,7 +22,7 @@ export default function AiringTvSeries() {
   return (
     <>
       <Head>
-        <title>Entertainment | TV Series</title>
+        <title>Airing Today TV Series | Entertainment</title>
       </Head>
 
       <AppWrapper>
@@ -49,7 +49,7 @@ export default function AiringTvSeries() {
                 />
                 <Collection
                   list={data.results}
-                  title="Airing Today"
+                  title="Airing Today TV Series"
                   mediaType="tvseries"
                 />
                 <PaginationImproved

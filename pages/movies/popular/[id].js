@@ -22,7 +22,7 @@ export default function PopularMovies() {
   return (
     <>
       <Head>
-        <title>Entertainment | Movies</title>
+        <title>Popular Movies | Entertainment</title>
       </Head>
 
       <AppWrapper>

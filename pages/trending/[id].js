@@ -22,7 +22,7 @@ export default function Trending() {
   return (
     <>
       <Head>
-        <title>Entertainment | Trending</title>
+        <title>Trending | Entertainment</title>
       </Head>
 
       <AppWrapper>

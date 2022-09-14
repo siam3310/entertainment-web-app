@@ -22,7 +22,7 @@ export default function NowPlayingMovies() {
   return (
     <>
       <Head>
-        <title>Entertainment | Movies</title>
+        <title>Top Rated Movies | Entertainment</title>
       </Head>
 
       <AppWrapper>

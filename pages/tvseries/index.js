@@ -17,7 +17,7 @@ export default function TvSeries({ airingToday, topRated, onTheAir }) {
   return (
     <>
       <Head>
-        <title>Entertainment | TV Series</title>
+        <title>TV Series | Entertainment</title>
       </Head>
 
       <AppWrapper>
@@ -31,7 +31,7 @@ export default function TvSeries({ airingToday, topRated, onTheAir }) {
           <Container>
             <Collection
               list={onTheAir}
-              title="On The Air"
+              title="On The Air TV Series"
               mediaType="tvseries"
               limit={12}
               href="/tvseries/onair/1"
@@ -39,7 +39,7 @@ export default function TvSeries({ airingToday, topRated, onTheAir }) {
 
             <Collection
               list={topRated}
-              title="Top Rated"
+              title="Top Rated TV Series"
               mediaType="tvseries"
               limit={12}
               href="/tvseries/top/1"
@@ -47,7 +47,7 @@ export default function TvSeries({ airingToday, topRated, onTheAir }) {
 
             <Collection
               list={airingToday}
-              title="Airing Today"
+              title="Airing Today TV Series"
               mediaType="tvseries"
               limit={12}
               href="/tvseries/airing/1"

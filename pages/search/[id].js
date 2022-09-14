@@ -20,7 +20,7 @@ export default function SearchAll({ data, id, page }) {
   return (
     <>
       <Head>
-        <title> Search Results | Entertainment</title>
+        <title>{id} - Search Results | Entertainment</title>
       </Head>
 
       <AppWrapper>

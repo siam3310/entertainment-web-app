@@ -22,7 +22,7 @@ export default function OnAirTvSeries() {
   return (
     <>
       <Head>
-        <title>Entertainment | TV Series</title>
+        <title>On The Air TV Series | Entertainment</title>
       </Head>
 
       <AppWrapper>
@@ -49,7 +49,7 @@ export default function OnAirTvSeries() {
                 />
                 <Collection
                   list={data.results}
-                  title="On The Air"
+                  title="On The Air TV Series"
                   mediaType="tvseries"
                 />
                 <PaginationImproved

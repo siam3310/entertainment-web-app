@@ -22,7 +22,7 @@ export default function UpcomingMovies() {
   return (
     <>
       <Head>
-        <title>Entertainment | Movies</title>
+        <title>Upcoming Movies | Entertainment</title>
       </Head>
 
       <AppWrapper>

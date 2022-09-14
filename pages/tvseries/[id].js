@@ -8,10 +8,13 @@ import MovieDetails from '../../components/MovieDetails';
 import { AppWrapper, Container } from '../../styles/SharedStyles';
 
 export default function Details({ details, credits }) {
+  console.log(details);
   return (
     <>
       <Head>
-        <title>{details.name} | Entertainment</title>
+        <title>{`${details.name} ${
+          details.first_air_date && `(${details.first_air_date.slice(0, 4)})`
+        } | Entertainment`}</title>
       </Head>
 
       <AppWrapper>

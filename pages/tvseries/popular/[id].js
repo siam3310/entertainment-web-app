@@ -22,7 +22,7 @@ export default function PopularTvSeries() {
   return (
     <>
       <Head>
-        <title>Entertainment | TV Series</title>
+        <title>Popular TV Series | Entertainment</title>
       </Head>
 
       <AppWrapper>

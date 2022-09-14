@@ -16,7 +16,7 @@ export default function SearchTvSeries({ data, id, page }) {
   return (
     <>
       <Head>
-        <title> {id} - Search Results | Entertainment</title>
+        <title>{id} - Search Results | Entertainment</title>
       </Head>
 
       <AppWrapper>

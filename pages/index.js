@@ -18,7 +18,7 @@ export default function Home({ trending, popularMovies, popularTvSeries }) {
   return (
     <>
       <Head>
-        <title>Entertainment | Home</title>
+        <title>Home | Entertainment</title>
         <meta name="description" content="Entertainment web app" />
       </Head>
 

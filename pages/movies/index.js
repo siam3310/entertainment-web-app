@@ -17,7 +17,7 @@ export default function Movies({ nowPlaying, topRated, upcoming }) {
   return (
     <>
       <Head>
-        <title>Entertainment | Movies</title>
+        <title>Movies | Entertainment</title>
       </Head>
 
       <AppWrapper>

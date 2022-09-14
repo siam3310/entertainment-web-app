@@ -22,7 +22,7 @@ export default function TopRatedTvSeries() {
   return (
     <>
       <Head>
-        <title>Entertainment | TV Series</title>
+        <title>Top Rated TV Series | Entertainment</title>
       </Head>
 
       <AppWrapper>
@@ -49,7 +49,7 @@ export default function TopRatedTvSeries() {
                 />
                 <Collection
                   list={data.results}
-                  title="Top Rated"
+                  title="Top Rated TV Series"
                   mediaType="tvseries"
                 />
                 <PaginationImproved

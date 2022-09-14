@@ -15,7 +15,9 @@ export default function Details({ details, credits }) {
   return (
     <>
       <Head>
-        <title>{details.title} | Entertainment</title>
+        <title>{`${details.title} ${
+          details.release_date && `(${details.release_date.slice(0, 4)})`
+        } | Entertainment`}</title>
       </Head>
 
       <AppWrapper>

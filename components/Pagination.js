@@ -5,15 +5,28 @@ import { ArrowLeftIcon, ArrowRightIcon } from '../icons';
 const StyledPagination = styled.div`
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.7rem;
+
+  @media (min-width: 600px) {
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
 `;
 
 const Anchor = styled.a`
   color: #fff;
-  padding: 0.4rem 1rem;
+  padding: 0.4em 1em;
   border: 2px solid currentColor;
-  border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -21,16 +34,25 @@ const Anchor = styled.a`
     props.isFirst || props.isLast ? 'none' : 'unset'};
   opacity: ${(props) => (props.isFirst || props.isLast ? '0.2' : 'unset')};
 
+  &:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  &:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
   svg {
-    height: 1rem;
+    height: 1em;
   }
 `;
 
 const Paragraph = styled.p`
-  padding: 0.45rem 1rem;
+  padding: 0.45em 1em;
   background-color: #fff;
   color: #333;
-  border-radius: 8px;
 `;
 
 export default function Pagination({

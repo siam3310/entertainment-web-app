@@ -8,35 +8,35 @@ import { Container } from '../styles/SharedStyles';
 const StyledSearchBar = styled.div`
   --placeholder: 0.9rem;
   --fs-btn: 0.7rem;
-  --svg-height: 1.1rem;
-  --svg-width: 1.1rem;
-  --form-gap: 0.7rem;
+  --svg-height: 1.2rem;
+  --svg-width: 1.2rem;
+  --form-gap: 0.6rem;
   margin: 1.1rem 0 1.3rem;
 
   @media (min-width: 600px) {
     --placeholder: 1rem;
     --fs-btn: 0.75rem;
-    --svg-height: 1.2rem;
-    --svg-width: 1.2rem;
-    --form-gap: 0.8rem;
+    --svg-height: 1.4rem;
+    --svg-width: 1.4rem;
+    --form-gap: 0.7rem;
   }
 
   @media (min-width: 768px) {
     --placeholder: 1.1rem;
     --fs-btn: 0.8rem;
-    --svg-height: 1.3rem;
-    --svg-width: 1.3rem;
-    --form-gap: 0.9rem;
+    --svg-height: 1.6rem;
+    --svg-width: 1.6rem;
+    --form-gap: 0.85rem;
     margin: 1.2rem 0 1.8rem;
   }
 
   @media (min-width: 1024px) {
     --placeholder: 1.4rem;
     --fs-btn: 0.95rem;
-    --svg-height: 1.75rem;
-    --svg-width: 1.75rem;
+    --svg-height: 1.9rem;
+    --svg-width: 1.9rem;
     --form-gap: 1rem;
-    margin: 1.5rem 0 2.3rem;
+    margin: 1.3rem 0 2.3rem;
   }
 `;
 
@@ -50,7 +50,6 @@ const Form = styled.form`
     background-color: transparent;
     color: white;
     font-size: var(--placeholder);
-
     width: 100%;
     padding: 0.4em 0;
     font-weight: 300;

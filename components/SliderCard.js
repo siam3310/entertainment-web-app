@@ -13,6 +13,10 @@ const StyledSliderCard = styled.article`
 const Thumbnail = styled.div`
   overflow: hidden;
   border-radius: 8px;
+
+  @media (min-width: 768px) {
+    border-radius: 9px;
+  }
 `;
 
 const MovieCardDetails = styled.header`
@@ -45,7 +49,6 @@ const MovieCardDetails = styled.header`
     flex-shrink: 0;
 
     svg {
-      margin-top: -0.2em;
       height: 1em;
       width: 1em;
     }
@@ -65,7 +68,7 @@ const MovieCardDetails = styled.header`
   }
 
   h3 {
-    font-size: clamp(1rem, 2.6vw, 1.6rem);
+    font-size: clamp(1rem, 2.3vw, 1.6rem);
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -80,7 +83,12 @@ const Gradient = styled.div`
   width: 100%;
   height: 100%;
   z-index: 3;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.65) 26%,
+    rgba(255, 255, 255, 0) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
 `;
 
 const SliderCard = ({

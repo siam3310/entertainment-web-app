@@ -4,10 +4,10 @@ import CollectionCard from './CollectionCard';
 import Heading from './Heading';
 
 const StyledCollection = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
 
-  @media (min-width: 600px) {
-    margin-bottom: 2.5rem;
+  @media (min-width: 768px) {
+    margin-bottom: 2.4rem;
   }
 
   @media (min-width: 1024px) {
@@ -27,14 +27,19 @@ const Grid = styled.div`
 
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 2.3rem 2.5rem;
+    gap: 1.8rem 2rem;
+  }
+
+  @media (min-width: 1160px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2.1rem 2.5rem;
   }
 `;
 
-const Collection = ({ list, title, mediaType, limit, href }) => {
+const Collection = ({ list, title, mediaType, headingType, limit, href }) => {
   return (
     <StyledCollection>
-      <Heading title={title} href={href} />
+      <Heading title={title} href={href} headingType={headingType} />
 
       <Grid>
         {sliceArray(list, limit || 20).map((item) => {

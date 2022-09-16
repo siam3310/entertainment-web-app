@@ -4,12 +4,32 @@ import styled from 'styled-components';
 import { MoviesIcon, SeriesIcon, StarIcon } from '../icons';
 
 const StyledCard = styled.article`
+  --fs-info: 0.67rem;
+  --fs-title: 0.9rem;
+  --border-radius: 8px;
+
+  @media (min-width: 600px) {
+    --fs-info: 0.7rem;
+    --fs-title: 0.95rem;
+  }
+
+  @media (min-width: 768px) {
+    --fs-info: 0.75rem;
+    --fs-title: 1rem;
+    --border-radius: 9px;
+  }
+
+  @media (min-width: 1024px) {
+    --fs-info: 0.8rem;
+    --fs-title: 1.125rem;
+  }
+
   cursor: pointer;
 `;
 
 const Thumbnail = styled.div`
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   margin-bottom: 0.6rem;
 `;
 
@@ -20,13 +40,13 @@ const CardDetails = styled.header`
     display: flex;
     gap: 1.2rem;
     align-items: center;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
   }
 
   div p {
     position: relative;
     color: rgba(255, 255, 255, 0.75);
-    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+    font-size: var(--fs-info);
     font-weight: 300;
   }
 
@@ -34,7 +54,7 @@ const CardDetails = styled.header`
   div p:nth-child(3) {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.4em;
     flex-shrink: 0;
 
     svg {
@@ -57,7 +77,8 @@ const CardDetails = styled.header`
   }
 
   h3 {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-size: var(--fs-title);
+    font-weight: 400;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -103,8 +124,8 @@ const Card = ({ item, mediaType }) => {
           alt={title || name}
           layout="responsive"
           objectFit="cover"
-          height={'164px'}
-          width={'268px'}
+          height={'239px'}
+          width={'384px'}
         />
       </Thumbnail>
       <CardDetails>
@@ -117,7 +138,8 @@ const Card = ({ item, mediaType }) => {
             {release_date ? 'Movie' : 'TV Series'}
           </p>
           <p>
-            <StarIcon /> {vote_average.toFixed(1)}
+            <StarIcon />
+            {vote_average.toFixed(1)}
           </p>
         </div>
         <h3>{title || name}</h3>

@@ -8,7 +8,10 @@ import SliderCard from './SliderCard';
 
 const SwiperWrapper = styled.div`
   margin-bottom: 1.6rem;
-  cursor: pointer;
+
+  .swiper-wrapper {
+    width: 1000rem;
+  }
 
   @media (min-width: 768px) {
     margin-bottom: 2rem;
@@ -21,6 +24,10 @@ const SwiperWrapper = styled.div`
 
 const StyledSwiper = styled(Swiper)`
   margin-right: -4rem;
+
+  @media (min-width: 1440px) {
+    margin-right: unset;
+  }
 `;
 
 const Slider = ({ trending, href }) => {
@@ -34,10 +41,11 @@ const Slider = ({ trending, href }) => {
         slidesPerView={1.5}
         slidesOffsetAfter={64}
         freeMode={true}
+        grabCursor={true}
         breakpoints={{
           600: {
             spaceBetween: 24,
-            slidesPerView: 1.8,
+            slidesPerView: 2.4,
           },
           1024: {
             slidesPerView: 2.4,

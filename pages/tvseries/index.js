@@ -31,24 +31,27 @@ export default function TvSeries({ airingToday, topRated, onTheAir }) {
           <Container>
             <Collection
               list={onTheAir}
-              title="On The Air TV Series"
+              title="On The Air"
               mediaType="tvseries"
+              headingType="tvseries"
               limit={12}
               href="/tvseries/onair/1"
             />
 
             <Collection
               list={topRated}
-              title="Top Rated TV Series"
+              title="Top Rated"
               mediaType="tvseries"
+              headingType="tvseries"
               limit={12}
               href="/tvseries/top/1"
             />
 
             <Collection
               list={airingToday}
-              title="Airing Today TV Series"
+              title="Airing Today"
               mediaType="tvseries"
+              headingType="tvseries"
               limit={12}
               href="/tvseries/airing/1"
             />

@@ -35,16 +35,18 @@ export default function Home({ trending, popularMovies, popularTvSeries }) {
 
             <Collection
               list={popularMovies}
-              title="Popular Movies"
+              title="Popular"
               mediaType="movie"
+              headingType="movie"
               limit="12"
               href="/movies/popular/1"
             />
 
             <Collection
               list={popularTvSeries}
-              title="Popular TV Series"
+              title="Popular"
               mediaType="tvseries"
+              headingType="tvseries"
               limit="12"
               href="/tvseries/popular/1"
             />

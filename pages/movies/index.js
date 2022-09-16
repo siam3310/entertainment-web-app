@@ -30,24 +30,27 @@ export default function Movies({ nowPlaying, topRated, upcoming }) {
           <Container>
             <Collection
               list={nowPlaying}
-              title="Now Playing Movies"
+              title="Now Playing"
               mediaType="movie"
+              headingType="movie"
               limit={12}
               href="/movies/now/1"
             />
 
             <Collection
               list={topRated}
-              title="Top Rated Movies"
+              title="Top Rated"
               mediaType="movie"
+              headingType="movie"
               limit={12}
               href="/movies/top/1"
             />
 
             <Collection
               list={upcoming}
-              title="Upcoming Movies"
+              title="Upcoming"
               mediaType="movie"
+              headingType="movie"
               limit={12}
               href="/movies/upcoming/1"
             />

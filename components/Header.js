@@ -39,7 +39,7 @@ const Navbar = styled.div`
     padding: 2rem 0;
     top: 2rem;
     height: calc(100vh - 4rem);
-    border-radius: 12px;
+    border-radius: 14px;
   }
 
   @media (max-height: 500px) {
@@ -51,7 +51,13 @@ const Navbar = styled.div`
 const Logo = styled.a`
   display: flex;
   svg {
-    width: 28px;
+    width: 26px;
+  }
+
+  @media (min-width: 600px) {
+    svg {
+      width: 30px;
+    }
   }
 
   @media (min-width: 768px) {
@@ -112,17 +118,20 @@ const Nav = styled.nav`
 
 const User = styled.button`
   flex-shrink: 0;
-  height: 1.8rem;
-  width: 1.8rem;
+  height: 1.7rem;
+  width: 1.7rem;
   border: 1.5px solid white;
   border-radius: 50%;
 
+  @media (min-width: 600px) {
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+
   @media (min-width: 768px) {
     margin-top: auto;
-    img {
-      height: 2rem;
-      width: 2rem;
-    }
+    height: 2rem;
+    width: 2rem;
   }
 `;
 

@@ -18,6 +18,7 @@ const StyledMovieDetails = styled.div`
   --mb-gap: 1.6rem;
   display: grid;
   gap: 1rem;
+  margin-bottom: 1.5rem;
 
   @media (min-width: 600px) {
     grid-template-columns: 35% 1fr;
@@ -33,6 +34,7 @@ const StyledMovieDetails = styled.div`
     --fs-cast: 0.9rem;
     --mb-gap: 1.8rem;
     gap: 2rem;
+    margin-bottom: 2rem;
   }
 
   @media (min-width: 1024px) {
@@ -44,6 +46,7 @@ const StyledMovieDetails = styled.div`
     --mb-gap: 2rem;
     grid-template-columns: 340px 1fr;
     gap: 3.5rem;
+    margin-bottom: 2.5rem;
   }
 `;
 

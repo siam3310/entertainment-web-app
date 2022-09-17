@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { StarIcon } from '../../icons';
 
 const StyledRatings = styled.div`
-  font-size: 2rem;
-  margin-bottom: var(--mb-gap);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,6 +18,7 @@ const StyledRatings = styled.div`
   }
 
   @media (min-width: 1024px) {
+    font-size: 2rem;
     margin-bottom: 1.2rem;
   }
 `;

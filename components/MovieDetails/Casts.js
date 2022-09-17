@@ -22,11 +22,16 @@ const StyledCasts = styled.div`
 `;
 
 const Cast = styled.p`
-  border: 1px solid currentColor;
-  padding: 0 0.55em 0.1em;
+  background-color: ${({ theme }) => theme.colors.semiDarkBlue};
+  padding: 0.2em 0.6em 0.3em;
   border-radius: 0.35em;
   font-size: var(--fs-cast);
   font-weight: 300;
+
+  span {
+    font-style: italic;
+    color: ${({ theme }) => theme.colors.grey};
+  }
 `;
 
 const Casts = ({ credits }) => {
@@ -39,7 +44,7 @@ const Casts = ({ credits }) => {
               .map((credit) => {
                 return <Cast key={credit.id}>{credit.name}</Cast>;
               })
-              .slice(0, 8) || []
+              .slice(0, 10) || []
           : 'N/A'}
       </div>
     </StyledCasts>

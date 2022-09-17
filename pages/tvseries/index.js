@@ -81,5 +81,6 @@ export async function getStaticProps() {
       topRated,
       onTheAir,
     },
+    revalidate: 5,
   };
 }

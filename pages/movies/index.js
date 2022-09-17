@@ -80,5 +80,6 @@ export async function getStaticProps() {
       topRated,
       upcoming,
     },
+    revalidate: 5,
   };
 }

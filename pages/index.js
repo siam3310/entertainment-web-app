@@ -76,5 +76,6 @@ export async function getStaticProps() {
       popularMovies,
       popularTvSeries,
     },
+    revalidate: 5,
   };
 }

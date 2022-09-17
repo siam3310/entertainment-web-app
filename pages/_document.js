@@ -27,6 +27,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="icon" href="/favicon/favicon.ico" />
           <link
             href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap"
             rel="stylesheet"

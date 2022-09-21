@@ -31,15 +31,15 @@ An entertainment web app built with Next.js and Styled Components that allows us
 
 ### Screenshot
 
-![](./assets/home.jpg)
+![](/assets/home.jpg)
 
-![](./assets/movies.jpg)
+![](/assets/movies.jpg)
 
-![](./assets/tv-series.jpg)
+![](/assets/tv-series.jpg)
 
-![](./assets/search-result.jpg)
+![](/assets/search-result.jpg)
 
-![](./assets/movie-detail.jpg)
+![](/assets/movie-detail.jpg)
 
 ## My process
 
@@ -61,7 +61,7 @@ The main purpose of this project is to take advantages of the capabilities of Ne
 
 There are many lessons that I have learned from building this application. However, there are 3 most important lessons that I got out of it.
 
-1. Have a better understanding of pre-rendering concept, and I also learned how to fetch data from the API using `getStaticProps` and `getServerSideProps`. Next.js provides different ways for data fetching depending on our needs. They do also suggest developers the ideal situation to use them. For me, I combined all of them in different parts of the application.
+1. Have a better understanding of the pre-rendering concept in nextJS, and using different methods for fetching data from the API, specifically by using `getStaticProps` and `getServerSideProps`. Next.js provides different ways for data fetching depending on our needs. They do also suggest developers the ideal situation to use them. For me, I combined all of them in different parts of the application.
 2. Using `useSWR` to implement pagination in the search result pages and the "see more" pages.
 3. Have a better understanding of the error `Cannot read Property 'slice' of Undefined`. Whenever we need to fetch the data from external API, we should make sure that the data exists before we use it in our application. Let say we want an array of movies to be rendered to the UI, but the data is not available yet. According to [this article](https://bobbyhadz.com/blog/javascript-cannot-read-property-slice-of-undefined), we have various solution for this error. The one that I find easiest to understand is to provide an empty fallback value like so: `const arr = data.slice(0, 10) || []`.
 

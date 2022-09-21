@@ -33,14 +33,6 @@ An entertainment web app built with Next.js and Styled Components that allows us
 
 ![](./public/assets/home.jpg)
 
-![](./public/assets/movies.jpg)
-
-![](./public/assets/tv-series.jpg)
-
-![](./public/assets/search-results.jpg)
-
-![](./public/assets/movie-detail.jpg)
-
 ## My process
 
 ### Project purpose and goal

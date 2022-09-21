@@ -37,7 +37,7 @@ An entertainment web app built with Next.js and Styled Components that allows us
 
 ![](./public/assets/tv-series.jpg)
 
-![](./public/assets/search-result.jpg)
+![](./public/assets/search-results.jpg)
 
 ![](./public/assets/movie-detail.jpg)
 

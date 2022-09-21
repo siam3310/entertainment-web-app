@@ -31,15 +31,15 @@ An entertainment web app built with Next.js and Styled Components that allows us
 
 ### Screenshot
 
-![](/assets/home.jpg)
+![](./public/assets/home.jpg)
 
-![](/assets/movies.jpg)
+![](./public/assets/movies.jpg)
 
-![](/assets/tv-series.jpg)
+![](./public/assets/tv-series.jpg)
 
-![](/assets/search-result.jpg)
+![](./public/assets/search-result.jpg)
 
-![](/assets/movie-detail.jpg)
+![](./public/assets/movie-detail.jpg)
 
 ## My process
 

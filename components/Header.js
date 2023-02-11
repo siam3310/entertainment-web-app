@@ -193,16 +193,18 @@ const Header = () => {
             })}
           </ul>
         </Nav>
-
-        <User aria-label="user">
-          <Image
-            src="/assets/image-avatar.png"
-            width={25}
-            height={25}
-            layout="responsive"
-            alt="avatar"
-          />
-        </User>
+          
+        <Link href='/auth/login'>
+          <User aria-label="user">
+            <Image
+              src="/assets/image-avatar.png"
+              width={25}
+              height={25}
+              layout="responsive"
+              alt="avatar"
+            />
+          </User>
+        </Link>
       </Navbar>
     </StyledHeader>
   );
